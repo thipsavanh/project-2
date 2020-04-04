@@ -1,34 +1,24 @@
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
-    var Library = sequelize.define("Library", {
+    var Wishlist = sequelize.define("Wishlist", {
         // The email cannot be null, and must be a proper email before creation
-        genre: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
-            len: [1]
+            allowNull: true,
         },
         author: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         edition: {
             type: DataTypes.STRING,
-            allowNull: true,
-        },
-        ISBN: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
+            allowNull: false
         }
 
     });
 
-    Library.associate = function(models) {
-        models.Library.belongsTo(models.User, {
+    Wishlist.associate = function(models) {
+        models.Wishlist.belongsTo(models.User, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false
@@ -36,5 +26,5 @@ module.exports = function(sequelize, DataTypes) {
         });
 
     };
-    return Library;
+    return Wishlist;
 };

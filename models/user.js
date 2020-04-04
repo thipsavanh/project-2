@@ -35,6 +35,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true,
             unique: true
         },
+
         city: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -67,6 +68,21 @@ module.exports = function(sequelize, DataTypes) {
     });
     User.hasMany = function(models) {
         models.User.belongsTo(models.Library, {
+            onDelete: "cascade"
+        });
+    };
+    User.hasMany = function(models) {
+        models.User.belongsTo(models.Wishlist, {
+            onDelete: "cascade"
+        });
+    };
+    User.hasMany = function(models) {
+        models.User.belongsTo(models.Comment, {
+            onDelete: "cascade"
+        });
+    };
+    User.hasMany = function(models) {
+        models.User.belongsTo(models.Blogpost, {
             onDelete: "cascade"
         });
     };
