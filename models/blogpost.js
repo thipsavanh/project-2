@@ -1,34 +1,28 @@
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
-    var Library = sequelize.define("Library", {
+    var Blogpost = sequelize.define("Blogpost", {
         // The email cannot be null, and must be a proper email before creation
-        genre: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         title: {
             type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1]
+            }
+        },
+        body: {
+            type: DataTypes.TEXT,
             allowNull: false,
             len: [1]
         },
-        author: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        edition: {
+        category: {
             type: DataTypes.STRING,
             allowNull: true,
-        },
-        ISBN: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
         }
 
     });
 
-    Library.associate = function(models) {
-        models.Library.belongsTo(models.User, {
+    Blogpost.associate = function(models) {
+        models.Blogpost.belongsTo(models.User, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false
@@ -36,5 +30,10 @@ module.exports = function(sequelize, DataTypes) {
         });
 
     };
-    return Library;
+    Blogpost.hasMany = function(models) {
+        models.Blogpost.belongsTo(models.Comments, {
+            onDelete: "cascade"
+        });
+    };
+    return Blogpost;
 };
