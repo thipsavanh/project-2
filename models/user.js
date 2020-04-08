@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        Full_name: {
+        full_name: {
             type: DataTypes.STRING,
             allowNull: false,
 
@@ -57,8 +57,7 @@ module.exports = function(sequelize, DataTypes) {
             unique: true,
             validate: {
                 isInt: true,
-                min: 5,
-                max: 5
+                min: 5
             }
         }
     });
