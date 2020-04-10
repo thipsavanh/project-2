@@ -18,20 +18,16 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
         }
-
     });
 
     Blogpost.associate = function(models) {
-        models.Blogpost.belongsTo(models.User, {
+        Blogpost.belongsTo(models.User, {
             onDelete: "CASCADE",
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
-
-    };
-    Blogpost.hasMany = function(models) {
-        models.Blogpost.belongsTo(models.Comments, {
+        Blogpost.hasMany(models.Comment, {
             onDelete: "cascade"
         });
     };
