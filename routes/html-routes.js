@@ -6,6 +6,12 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
+
+  app.get("/blogpost", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/blogpost.html"));
+  });
+
+};
     app.get("/", function(req, res) {
         // If the user already has an account send them to the members page
         if (req.user) {
@@ -45,3 +51,4 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/members.html"));
     });
 };
+
