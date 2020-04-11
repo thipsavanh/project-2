@@ -33,8 +33,15 @@ $(document).ready(function() {
         }
         // If we have an email and password, run the signUpUser function
         signUpUser(userData.username, userData.email, userData.password, userData.full_name, userData.address, userData.address2, userData.city, userData.state, userData.zip);
-        // emailInput.val("");
-        // passwordInput.val("");
+        usernameInput.val("");
+        emailInput.val("");
+        passwordInput.val("");
+        fullnameInput.val("");
+        addressInput.val("");
+        address2Input.val("");
+        cityInput.val("");
+        stateInput.val("");
+        zipInput.val("");
     });
 
     // Does a post to the signup route. If successful, we are redirected to the members page
@@ -52,14 +59,25 @@ $(document).ready(function() {
                 zip: zip
             })
             .then(function(data) {
+                console.log()
+                //window.location.replace("/subscription");
                 window.location.replace("/");
+
                 // If there's an error, handle it by throwing up a bootstrap alert
             })
             .catch(handleLoginErr);
-    }
+
+         redirect();
+    };
 
     function handleLoginErr(err) {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
-    }
-})
+
+    };
+
+   
+});
+
+
+

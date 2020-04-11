@@ -1,6 +1,8 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+// Will add dotenv in later 
+var stripe = require('stripe')('sk_test_Em0lVIiWzkkDqEro2ocRUt1400SCdpJAEz');
 
 var Pusher = require('pusher');
 
@@ -38,7 +40,7 @@ module.exports = function(app) {
                 zip: req.body.zip
             })
             .then(function() {
-                res.redirect(307, "/api/login");
+                res.redirect(307, "/subscription");
             })
             .catch(function(err) {
 
@@ -144,4 +146,72 @@ module.exports = function(app) {
             });
         }
     });
+
+   
+
+    //Route for payment method 
+    app.get('/setup_intents', async (req, res) => {
+
+        const setupIntent = await stripe.setupIntents.create({
+            payment_method_types: ['card'],
+            usage: 'off_session',
+        });
+        res.json(setupIntent);
+    });
+
+    const PLANS = [
+        null,
+        'Gold-plan',
+        'Silver-plan',
+        'Bronze-plan',
+    ]
+    
+    app.post('/confirmed_subscription', async (req, res) => {
+        //create customer
+        //create subscription
+        let customer;
+        let subscription;
+        let name;
+       
+    
+        try{
+          customer = await stripe.customers.create({
+            email: req.body.email,
+            name: req.body.name,
+            payment_method: req.body.payment_method,
+            name: req.body.name,
+            invoice_settings: {
+              default_payment_method: req.body.payment_method,
+            },
+          });
+        } catch(e) {
+          console.log(e);
+          return res
+          .status(422)
+          .json({
+            message: 'Failed to create customer!',
+            details: e
+          });
+        }
+    
+        try {
+          subscription = await stripe.subscriptions.create({
+            customer: customer.id,
+            //cancel_at: monthFromNOw(req.body.installments),
+            items: [{
+              plan: PLANS[req.body.subscription],
+              quantity: 1,
+            }]
+          });
+        } catch(e) {
+          console.log(e);
+          return res
+          .status(422)
+          .json({
+            message: "Failed to create subscription",
+            details: e
+          });
+        }
+
+      })
 };
