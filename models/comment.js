@@ -9,16 +9,14 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Comment.associate = function(models) {
-        models.Comment.belongsTo(models.User, {
+        Comment.belongsTo(models.User, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false
             }
         });
 
-    };
-    Comment.associate = function(models) {
-        models.Comment.belongsTo(models.Blogpost, {
+        Comment.belongsTo(models.Blogpost, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false

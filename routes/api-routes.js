@@ -4,6 +4,17 @@ var passport = require("../config/passport");
 // Will add dotenv in later 
 var stripe = require('stripe')('sk_test_Em0lVIiWzkkDqEro2ocRUt1400SCdpJAEz');
 
+var Pusher = require('pusher');
+
+var pusher = new Pusher({
+    appId: '979597',
+    key: 'fa885a6ad4dfa25e855b',
+    secret: 'c1dea7cde1aa39a86b01',
+    cluster: 'us2',
+    encrypted: true
+  });
+
+
 module.exports = function(app) {
     // Using the passport.authenticate middleware with our local strategy.
     // If the user has valid login credentials, send them to the members page.
@@ -32,9 +43,88 @@ module.exports = function(app) {
                 res.redirect(307, "/subscription");
             })
             .catch(function(err) {
+
+                console.log(err)
+
                 res.status(401).json(err);
             });
     });
+
+
+    app.get("/api/blogpost", function(req, res) {
+        db.User.findall({
+            include: [db.Blogpost]
+        }).then(function(dbUser) {
+            res.json(dbUser;
+        });
+    });
+
+    app.post("/api/blogpost", function(req, res){
+        console.log(req.body);
+        db.User.create ({
+            newComment = {
+                userName: req.body.userName,
+                comment: req.body.comment
+              },
+              .pusher.trigger('flash-comments', 'new_comment', newComment);
+              res.json({  created: true });
+            });
+        });
+      
+
+
+    app.post("/bookshelf", function(req, res) {
+        console.log(req.body)
+        book = {
+            title: req.body.title,
+            author: req.body.author,
+            image: req.body.image,
+            ISBN: req.body.isbn,
+            UserId: 1
+        }
+        console.log(book)
+        db.Library.create(book)
+            .then(function() {
+                res.status(200).send;
+            })
+            .catch(function(err) {
+                console.log(err)
+                res.status(401).json(err);
+            });
+    });
+
+    // Route for bookshelf
+    app.get("/bookshelf", function(req, res) {
+        // req.logout();
+        res.redirect("/");
+    });
+
+    app.get("/wishlist", function(req, res) {
+        // req.logout();
+        res.redirect("/");
+    });
+
+    app.post("/wishlist", function(req, res) {
+        console.log(req.body)
+        wish = {
+            title: req.body.title,
+            author: req.body.author,
+            image: req.body.image
+        }
+        console.log(wish)
+        db.Wishlist.create(wish)
+            .then(function() {
+                res.status(200).send;
+            })
+            .catch(function(err) {
+                console.log(err)
+                res.status(401).json(err);
+            });
+    });
+    // app.post("/bookshelf", function(req, res) {
+    //     // req.logout();
+    //     res.redirect("/");
+    // });
 
     // Route for logging user out
     app.get("/logout", function(req, res) {
