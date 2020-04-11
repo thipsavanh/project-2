@@ -11,9 +11,10 @@ $(document).ready(function() {
     var stateInput = $("input#state-input");
     var zipInput = $("input#zip-input");
 
-
-    // When the signup button is clicked, we validate the email and password are not blank
+    console.log("I am working")
+        // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function(event) {
+        console.log("heyyy")
         event.preventDefault();
         var userData = {
             username: usernameInput.val().trim(),
@@ -51,7 +52,7 @@ $(document).ready(function() {
                 zip: zip
             })
             .then(function(data) {
-                window.location.replace("/members");
+                window.location.replace("/");
                 // If there's an error, handle it by throwing up a bootstrap alert
             })
             .catch(handleLoginErr);
@@ -61,4 +62,4 @@ $(document).ready(function() {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
-});
+})

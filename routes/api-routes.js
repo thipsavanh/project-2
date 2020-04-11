@@ -30,10 +30,41 @@ module.exports = function(app) {
                 res.redirect(307, "/api/login");
             })
             .catch(function(err) {
+                console.log(err)
                 res.status(401).json(err);
             });
     });
 
+    app.post("/bookshelf", function(req, res) {
+        console.log(req.body)
+        book = {
+            title: req.body.title,
+            author: req.body.author,
+            image: req.body.image,
+            ISBN: req.body.isbn,
+            UserId: 1
+        }
+        console.log(book)
+        db.Library.create(book)
+            .then(function() {
+                res.status(200).send;
+            })
+            .catch(function(err) {
+                console.log(err)
+                res.status(401).json(err);
+            });
+    });
+
+    // Route for bookshelf
+    app.get("/bookshelf", function(req, res) {
+        // req.logout();
+        res.redirect("/");
+    });
+
+    // app.post("/bookshelf", function(req, res) {
+    //     // req.logout();
+    //     res.redirect("/");
+    // });
     // Route for logging user out
     app.get("/logout", function(req, res) {
         req.logout();
