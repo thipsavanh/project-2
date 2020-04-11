@@ -1,22 +1,28 @@
 {
     "development": {
         "username": "root",
-        "password": "ChiangMai20!",
+
+        "password": null,
+
         "database": "bookmart",
         "host": "127.0.0.1",
         "dialect": "mysql"
     },
     "test": {
         "username": "root",
-        "password": "ChiangMai20!",
-        "database": "database_test",
+
+        "password": null,
+        "database": "bookmart",
+
         "host": "127.0.0.1",
         "dialect": "mysql"
     },
     "production": {
         "username": "root",
-        "password": "ChiangMai20!",
-        "database": "database_production",
+
+        "password": null,
+        "database": "bookmart",
+
         "host": "127.0.0.1",
         "dialect": "mysql"
     }

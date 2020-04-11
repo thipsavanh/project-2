@@ -3,6 +3,7 @@ var express = require("express");
 var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
+
 var path = require('path');
 var bodyParser = require('body-parser');
 
@@ -15,6 +16,7 @@ var pusher = new Pusher({
   cluster: 'us2',
   encrypted: true
 });
+
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 8080;
@@ -30,6 +32,7 @@ app.use(express.static("public"));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,4 +55,6 @@ db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
+
 });
+

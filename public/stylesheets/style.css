@@ -1,5 +1,6 @@
 form.signup,
 form.login {
+
   margin-top: 50px;
 }
 
@@ -257,4 +258,15 @@ animation-fill-mode:forwards; /*when the spec is finished*/
   opacity:1;
   -ms-transform:  translate(0px,0px)  ;
 }
+=======
+    margin-top: 50px;
+}
+
+.navbar-brand {
+    margin-bottom: 80px;
+}
+
+.bg-primary {
+    margin-top: 80px;
+
 }
