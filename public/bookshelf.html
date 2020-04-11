@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
              <span class="sr-only"> Toggle navigation </span>
@@ -17,7 +18,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
            </button>
+
         <a class="navbar-brand" href="/"><img src="/images/bookmart.png" alt="Bookmart LOGO"></a>
+
 
 
         <ul class="nav navbar-nav pull-right">
@@ -63,7 +66,12 @@
                             <div class="card-body">
                                 <form action="" method="POST" role="form">
                                     <div class="form-group">
+
+                                        <label for="">ISBN</label>
+                                        <input type="number" class="form-control" id="isbn" placeholder="">
+
                                         <input type="" class="form-control" id="title" placeholder="Book Title">
+
                                     </div>
                                 </form>
                                 <br>
@@ -80,8 +88,10 @@
             </div>
 
 
+
             <br/>
         </div>
+
 
         <div class="container">
             <div class="row">
@@ -89,6 +99,30 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <h5 class="card-title">Search Results</h5>
+
+                            <div class="card-body">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="..." alt="Book Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Book title</h5>
+                                        <p class="card-text search-results">Description of the book.</p>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <a href="#" class="card-link">Add to Bookshelf</a>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <br/>
+
                             <hr>
                             <div class="search-results">
 
@@ -105,6 +139,7 @@
         </div>
 
         <br/>
+
         </div>
         <br>
 
@@ -148,7 +183,9 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
         <script type="text/javascript" src="js/bookshelf.js"></script>
+
 
 
 </body>
