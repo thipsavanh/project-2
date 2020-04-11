@@ -33,28 +33,26 @@ module.exports = function(sequelize, DataTypes) {
         address: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+
         },
         address2: {
             type: DataTypes.STRING,
             allowNull: true,
-            unique: true
+
         },
 
         city: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+
         },
         state: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         },
         zip: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true,
             validate: {
                 isInt: true,
                 min: 5

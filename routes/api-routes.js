@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-
+var axios = require("axios")
 var Pusher = require('pusher');
 
 var pusher = new Pusher({
@@ -10,7 +10,7 @@ var pusher = new Pusher({
     secret: 'c1dea7cde1aa39a86b01',
     cluster: 'us2',
     encrypted: true
-  });
+});
 
 
 module.exports = function(app) {
@@ -53,22 +53,22 @@ module.exports = function(app) {
         db.User.findall({
             include: [db.Blogpost]
         }).then(function(dbUser) {
-            res.json(dbUser;
+            res.json(dbUser);
         });
     });
 
-    app.post("/api/blogpost", function(req, res){
-        console.log(req.body);
-        db.User.create ({
-            newComment = {
-                userName: req.body.userName,
-                comment: req.body.comment
-              },
-              .pusher.trigger('flash-comments', 'new_comment', newComment);
-              res.json({  created: true });
-            });
-        });
-      
+    // app.post("/api/blogpost", function(req, res) {
+    //     console.log(req.body);
+    //     db.User.create({
+    //         newComment = {
+    //             userName: req.body.userName,
+    //             comment: req.body.comment
+    //         },
+    //         .pusher.trigger('flash-comments', 'new_comment', newComment);
+    //         res.json({ created: true });
+    //     });
+    // });
+
 
 
     app.post("/bookshelf", function(req, res) {
@@ -97,6 +97,26 @@ module.exports = function(app) {
         res.redirect("/");
     });
 
+    app.get("/getbooks/:title", function(req, res) {
+        // req.params.title
+        console.log(req.params.title)
+        var yourAPIKey = "AIzaSyDkN88vIBWXAbfxV4WBnTEVJ8aZeh93mks";
+        // Send an AJAX GET-request with jQuery TO GOOGLE BOOKS API
+        var queryURL = `https://www.googleapis.com/books/v1/volumes?q=search+${req.params.title}+maxResults=5&${yourAPIKey}`
+            //  https://www.googleapis.com/books/v1/volumes?q=${isbn}&key=${yourAPIKey} 
+
+        axios.get(queryURL).then(function(response) {
+            console.log(response.data.items[0].volumeInfo.title)
+
+            res.json(response.data)
+                // console.log(response.items[0].volumeInfo.title)
+                // console.log(response.items[0].volumeInfo.authors)
+                // console.log(response.items[0].volumeInfo.description)
+                // console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail)
+        })
+    });
+
+
     app.get("/wishlist", function(req, res) {
         // req.logout();
         res.redirect("/");
@@ -119,10 +139,8 @@ module.exports = function(app) {
                 res.status(401).json(err);
             });
     });
-    // app.post("/bookshelf", function(req, res) {
-    //     // req.logout();
-    //     res.redirect("/");
-    // });
+
+
 
     // Route for logging user out
     app.get("/logout", function(req, res) {
@@ -130,6 +148,10 @@ module.exports = function(app) {
         res.redirect("/");
     });
 
+    app.get("/blogpost", function(req, res) {
+        req.logout();
+        res.redirect("/");
+    });
     // Route for getting some data about our user to be used client side
     app.get("/api/user_data", function(req, res) {
         if (!req.user) {

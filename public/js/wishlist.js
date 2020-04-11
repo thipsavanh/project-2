@@ -1,22 +1,22 @@
 $(document).ready(function() {
-    // This file just does a GET request to figure out which user is logged in
-    // and updates the HTML on the page
     $.get("/api/user_data").then(function(data) {
         $(".member-name").text(data.username);
     });
-
-    let library = []
+    let wishlist = []
     $("#find-book").on("click", function(event) {
         event.preventDefault();
 
         // grab title name
         var intitle = $("#title").val().trim();
         console.log(intitle)
-
-
+            //refactor to .env later 
+        var yourAPIKey = "AIzaSyDkN88vIBWXAbfxV4WBnTEVJ8aZeh93mks";
+        // Send an AJAX GET-request with jQuery TO GOOGLE BOOKS API
+        var queryURL = `https://www.googleapis.com/books/v1/volumes?q=search+${intitle}+maxResults=5&${yourAPIKey}`
+            //  https://www.googleapis.com/books/v1/volumes?q=${isbn}&key=${yourAPIKey} 
 
         $.ajax({
-            url: `/getbooks/${intitle}`,
+            url: queryURL,
             method: "GET"
         }).then(function(response) {
             console.log(response)
@@ -26,11 +26,10 @@ $(document).ready(function() {
             console.log(response.items[0].volumeInfo.description)
             console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail)
 
-            let Book = function(title, author, image, isbn) {
+            let Wish = function(title, author, image) {
                 this.title = title,
                     this.author = author,
-                    this.image = image,
-                    this.isbn = isbn
+                    this.image = image
 
             };
             var buttonID = 0;
@@ -54,24 +53,24 @@ $(document).ready(function() {
                 button.on("click", function(e) {
                     e.preventDefault();
                     var myId = e.target.id
-                    let bookobject = library[myId]
+                    let bookobject = wishlist[myId]
                     addBook(bookobject.title, bookobject.author, bookobject.image, bookobject.isbn);
-                    // library[myId]
-                    // console.log(library[myId].title);
+                    // wishlist[myId]
+                    // console.log(wishlist[myId].title);
                     // console.log(e.target.id)
                 });
                 cardDiv3.append(button);
                 buttonID++;
                 //appends to the page 
                 $(".search-results").append(cardDiv)
+
                 var title = response.items[i].volumeInfo.title;
                 var author = response.items[i].volumeInfo.authors[0];
                 var image = response.items[i].volumeInfo.imageLinks.smallThumbnail;
-                var isbn = response.items[i].volumeInfo.industryIdentifiers[0].identifier;
-                var newBook = new Book(title, author, image, isbn);
+                var newBook = new Wish(title, author, image);
                 // console.log(newBook)
-                library.push(newBook)
-                console.log(library)
+                wishlist.push(newBook);
+                console.log(wishlist)
 
             }
         });
@@ -80,13 +79,12 @@ $(document).ready(function() {
 
     });
 
-    function addBook(title, author, image, isbn) {
-        console.log(title, author, image, isbn)
-        $.post("/bookshelf", {
+    function addBook(title, author, image) {
+        console.log(title, author, image)
+        $.post("/wishlist", {
             title: title,
             author: author,
-            image: image,
-            isbn: isbn
+            image: image
         }).done
     }
 });
