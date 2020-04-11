@@ -61,6 +61,28 @@ module.exports = function(app) {
         res.redirect("/");
     });
 
+    app.get("/wishlist", function(req, res) {
+        // req.logout();
+        res.redirect("/");
+    });
+
+    app.post("/wishlist", function(req, res) {
+        console.log(req.body)
+        wish = {
+            title: req.body.title,
+            author: req.body.author,
+            image: req.body.image
+        }
+        console.log(wish)
+        db.Wishlist.create(wish)
+            .then(function() {
+                res.status(200).send;
+            })
+            .catch(function(err) {
+                console.log(err)
+                res.status(401).json(err);
+            });
+    });
     // app.post("/bookshelf", function(req, res) {
     //     // req.logout();
     //     res.redirect("/");
