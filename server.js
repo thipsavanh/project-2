@@ -10,11 +10,11 @@ var bodyParser = require('body-parser');
 var Pusher = require('pusher');
 
 var pusher = new Pusher({
-  appId: '979597',
-  key: 'fa885a6ad4dfa25e855b',
-  secret: 'c1dea7cde1aa39a86b01',
-  cluster: 'us2',
-  encrypted: true
+    appId: '979597',
+    key: 'fa885a6ad4dfa25e855b',
+    secret: 'c1dea7cde1aa39a86b01',
+    cluster: 'us2',
+    encrypted: true
 });
 
 
@@ -51,10 +51,9 @@ require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-  });
+db.sequelize.sync({ force: true }).then(function() {
+    app.listen(PORT, function() {
+        console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
+    });
 
 });
-
