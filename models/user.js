@@ -73,8 +73,8 @@ module.exports = function(sequelize, DataTypes) {
 
 
     User.associate = function(models) {
-        // Associating User with Posts
-        // When an User is deleted, also delete any associated Posts
+        // Associating User with Books in a library, blog post, wishlist, comment, b
+        // When an User is deleted, also delete any associated elements
         User.hasMany(models.Library, {
             onDelete: "cascade"
         });
@@ -85,9 +85,6 @@ module.exports = function(sequelize, DataTypes) {
             onDelete: "cascade"
         });
         User.hasMany(models.Comment, {
-            onDelete: "cascade"
-        });
-        User.hasMany(models.Blogpost, {
             onDelete: "cascade"
         });
     };
