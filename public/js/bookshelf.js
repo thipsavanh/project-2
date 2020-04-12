@@ -2,8 +2,15 @@ $(document).ready(function() {
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     $.get("/api/user_data").then(function(data) {
-        $(".member-name").text(data.username);
+        $(".member-name").text(data.email);
+        console.log(data)
     });
+
+    // $.get("/api/user_data").then(function(data) {
+    //     // console.log(data.id)
+    // });
+
+
 
     let library = []
     $("#find-book").on("click", function(event) {
@@ -80,13 +87,16 @@ $(document).ready(function() {
 
     });
 
+
     function addBook(title, author, image, isbn) {
         console.log(title, author, image, isbn)
+
         $.post("/bookshelf", {
             title: title,
             author: author,
             image: image,
-            isbn: isbn
+            isbn: isbn,
+            UserId: data.id
         }).done
     }
 });

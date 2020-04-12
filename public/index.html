@@ -5,95 +5,86 @@
     <title>Bookmart - Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-    <link href="stylesheets/style.css" rel="stylesheet">
+
+    <link href="stylesheets/parallex.css" rel="stylesheet">
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
-             <span class="sr-only"> Toggle navigation </span>
+        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
+            <span class="sr-only"> Toggle navigation </span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-           </button>
-        <a class="navbar-brand" href="/"><img src="/images/bookmart.png" alt="Bookmart LOGO"></a>
+        </button> -->
+        <img class="navbrand mx-auto" src="images/book.png" alt="Bookmart LOGO">
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light mx-auto">
+        <div class="navbar-nav mx-auto">
+            <a class="nav-item active nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 
 
-        <ul class="nav navbar-nav pull-right">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signup">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ebook">Free E-books</a>
-            </li>
-        </ul>
+            <a class="nav-item nav-link" href="/login">Login</a>
+
+
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+
+
+            <a class="nav-item nav-link" href="/ebook">Free E-books</a>
         </div>
     </nav>
 
 
-    <header class="masthead">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-lg-7 my-auto">
-                    <div class="header-content mx-auto">
-                        <h1 class="mb-5">Bookmart is an app that allow Bookworms to easily exchange books through a virtual book club.</h1>
-                        <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
-                    </div>
+
+
+
+
+    <section class="features" id="features">
+        <div class="section-heading text-center">
+            <section class="cta">
+                <div class="cta-content">
+
                 </div>
-                <div class="col-lg-5 my-auto">
-                    <div class="device-container">
-                        <div class="device-mockup iphone6_plus portrait white">
-                            <div class="device">
-                                <div class="screen">
-                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                                </div>
-                                <div class="button">
-                                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <div class="row"></div>
         </div>
-    </header>
-
-
-
-    <section class="bg-primary" id="features">
-        <div class="container">
-            <div class="section-heading text-center">
-                <section class="cta">
-                    <div class="cta-content">
-                        <div class="container">
-                            <h2 class="section-heading">Discover multiple realities!</h2>
-                            <p>Our subscription offers unlimited connections with books you deserve to read. Sign up today to get started!</p>
-                        </div>
-                    </div>
-                    <div class="row"></div>
-            </div>
 
         </div>
 
         </section>
-
         <section class="features" id="features">
+            <div class="container">
+                <div class="section-heading text-center">
+
+                    <div class="cta-content">
+
+                        <hr>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+        </section>
+
+    </section>
+
+    <div class="jumbotron paral paralsec">
+        <h1 class="display-3">Stop waiting. Start reading.</h1>
+        <p class="lead">Start Reading Now for Free!</p>
+        <p class="lead">
+            <a class="btn btn-warning btn-lg btn-md" href="#" role="button">Here is a button 1</a>
+        </p>
+    </div>
+
+    <!-- <section class="features" id="features">
             <div class="container">
                 <div class="section-heading text-center">
                     <section class="cta">
                         <div class="cta-content">
                             <div class="container">
-                                <h2>Stop waiting. Start reading.</h2>
-                                <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Start Reading Now for Free!</a>
+                                <h2 class="section-heading">Discover multiple realities!</h2>
+                                <p>Our subscription offers unlimited connections with books you deserve to read. Sign up today to get started!</p>
                             </div>
                         </div>
                         <div class="overlay"></div>
@@ -101,12 +92,126 @@
                     <hr>
                 </div>
 
+        </section> -->
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <div class="cta-content">
+                    <div class="container">
+                        <h2 class="display-3">Pick Your Subscription!</h2>
+                        <p class="lead">Our subscription offers unlimited connections with books you deserve to read. Sign up today to get started!</p>
+                    </div>
+                    <hr>
+                    <div class="mbr-overlay"></div>
+                    <div class="card-deck">
+                        <div class="card bg-warning-color-dark">
+                            <div class="card-body text-center">
+                                <h3 class="card-title"> Bronze Plan</h3>
+                                <h1>$7.00
+                                </h1>
+                                <p class="card-text">month per user includes </p>
+
+                                <p>
+                                    3 Books
+                                </p>
+                                <p>
+                                    Email Support
+                                </p>
+                                <p>
+                                    Help Center Access
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card bg-secondary">
+                            <div class="card-body text-center">
+                                <h3 class="card-title"> Silver Plan</h3>
+
+                                <h1>$42.00
+                                </h1>
+                                <p class="card-text"> for 6 month for 2 user includes </p>
+
+                                <p>
+                                    20 Books
+                                </p>
+                                <p>
+                                    Priority Email Support
+                                </p>
+                                <p>
+                                    Help Center Access
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card bg-warning">
+                            <div class="card-body text-center">
+                                <h3 class="card-title"> Gold Plan</h3>
+
+                                <h1>$82.00
+                                </h1>
+                                <p class="card-text"> a year for 5 user includes </p>
+
+                                <p>
+                                    50 Books
+                                </p>
+                                <p>
+                                    Phone and email support
+                                </p>
+                                <p>
+                                    Help Center Access
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <hr>
+            </div>
+
+    </section>
+
+    <body>
+        <!-- First Parallax Section -->
+        <div class="jumbotron paral paralsec1">
+            <h1 class="display-3">Here is a heading 1</h1>
+            <p class="lead">Here is a short description 1</p>
+            <p class="lead">
+                <a class="btn btn-info btn-lg btn-md" href="#" role="button">Here is a button 1</a>
+            </p>
+        </div>
+
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <div class="cta">
+                        <div class="cta-content">
+                            <h1 class="mb-5 display-3">The app that allow Bookworms to easily exchange books through a virtual book club.</h1>
+                            <a href="/login" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
+
+                        </div>
+
+
+                        <hr>
+                    </div>
+                </div>
+
         </section>
 
+
+        <!-- Second Parallax Section -->
+        <div class="jumbotron paral paralsec">
+            <h1 class="display-3">Here is a heading 2</h1>
+            <p class="lead">Here is a short description 2</p>
+            <p class="lead">
+                <a class="btn btn-warning btn-lg btn-md" href="widgets.html" role="button">Here is a button 2</a>
+            </p>
+        </div>
         <footer>
 
             <!-- Footer -->
             <div class="container">
+                <hr>
                 <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
                 <ul class="list-inline">
                     <li class="list-inline-item">
@@ -137,9 +242,24 @@
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Custom scripts for this template -->
         <script src="js/new-age.min.js"></script>
-
         <script type="text/javascript" src="js/login.js"></script>
 
-</body>
+        <!-- Colors in Palette
+    #1a2e55#235midnightbluehsl(219,53,21)rgb(26,46,85)
+Color	Hex	RGB
+navy #3b5786	(59,87,134)
+steel #a3b3ca	(163,179,202)
+light blue #d4e4f3	(212,228,243)
+peach #fbd0bf	(251,208,191)
+gray #aaaaaa	(170,170,170) -->
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+    </body>
 
 </html>

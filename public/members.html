@@ -5,121 +5,173 @@
     <title>Bookmart - Dashboard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-    <link href="stylesheets/style.css" rel="stylesheet">
+
+    <link href="stylesheets/parallex.css" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
-             <span class="sr-only"> Toggle navigation </span>
+        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
+            <span class="sr-only"> Toggle navigation </span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-           </button>
-        <a class="navbar-brand" href="/"><img src="/images/bookmart.png" alt="Bookmart LOGO"></a>
+        </button> -->
+        <img class="navbrand mx-auto" src="images/book.png" alt="Bookmart LOGO">
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light mx-auto">
+        <div class="navbar-nav mx-auto">
+            <a class="nav-item active nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 
 
-        <section class="bg-primary" id="features">
-            <div class="container">
-                <div class="section-heading">
-                    <section class="cta">
-                        <div class="cta-content">
-                            <div class="container">
-                                <h2>Welcome <span class="member-name"></span></h2>
-                            </div>
-                        </div>
+            <a class="nav-item nav-link" href="/login">Login</a>
+
+
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+
+
+            <a class="nav-item nav-link" href="/ebook">Free E-books</a>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <div class="features paralsec" id="features">
+        <div class="section-heading text-center">
+            <section class="cta">
+                <div class="cta-content">
+
+                </div>
+                <div class="row"></div>
+        </div>
+
+    </div>
+    </section>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+
+                <div class="cta-content">
+
+                    <hr>
+                </div>
+            </div>
+            <div class="overlay"></div>
+    </section>
+
+    </div>
+
+    <div class="jumbotron paral paralsec2">
+        <h1 class="display-3">
+            Welcome <span class="member-name"></span>
+        </h1>
+        <p class="lead">Thanks for being a Bookworm!</p>
+        <!-- <p class="lead">
+            <a class="btn btn-warning btn-lg btn-md" href="#" role="button">Here is a button 1</a>
+        </p> -->
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="card text-center mb-3" style="max-width: 180rem;">
+                <div class="card-body">
+                    <div class="text-center card-header">
+                        <h4>Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Dark card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="/profile" class="btn btn-warning ">Edit profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-white bg-navy" style="max-width: 24rem;">
+                <div class="card-body">
+                    <div class="text-center card-header">
+                        <h4 class="text-white">Bookshelf</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Dark card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="/bookshelf" class="btn btn-warning ">Edit Bookshelf</a>
+                    </div>
+                    <hr>
                 </div>
 
-            </div>
-            <hr>
-
-            </section>
-
-            <div class="container">
-                <div class="row">
-                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Profile</div>
+                <div class="card text-white bg-secondary mb-3" style="max-width: 24rem;">
+                    <div class="card-body">
+                        <div class="text-center card-header">
+                            <h4 class="text-white">Wishlist </h4>
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">Dark card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p>Edit Profile <a href="/">here</a></p>
+                            <a href="/Wishlist" class="btn btn-warning ">Edit Wishlist</a>
                         </div>
                         <hr>
-                    </div>
-                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Bookshelf</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p>Edit Bookshelf <a href="/bookshelf">here</a></p>
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Wishlist</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <p>Add to Wishlist <a href="/wishlist">here</a></p>
-                        </div>
-
-                        <br/>
                     </div>
                     <br>
                 </div>
             </div>
+        </div>
+    </div>
 
-
+    <!-- 
             <section class="features" id="features">
                 <div class="container">
                     <div class="section-heading text-center">
-                        <section class="cta">
-                            <div class="cta-content">
-
-                            </div>
-                            <div class="overlay"></div>
-                        </section>
+                        <div class="cta-content">
+                        </div>
+                        <div class="overlay"></div>
                         <hr>
                     </div>
 
-            </section>
+            </section> -->
 
-            <footer>
+    <footer>
 
-                <!-- Footer -->
-                <div class="container">
-                    <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a href="#!">About</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="/members.html">The Library</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">Bookworm Dashboard</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">The Clew</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">FAQ</a>
-                        </li>
-                    </ul>
-                </div>
-            </footer>
+        <!-- Footer -->
+        <div class="container">
+            <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#!">About</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="/members.html">The Library</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">Bookworm Dashboard</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">The Clew</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <!-- Bootstrap core JavaScript -->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-            <!-- Plugin JavaScript -->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-            <!-- Custom scripts for this template -->
-            <script src="js/new-age.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
 
-            <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 
 </body>
 
