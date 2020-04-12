@@ -147,7 +147,7 @@ var createCard = function(data) {
             author: author,
             image: image,
             isbn: isbn
-        })
-    }
-});
+        });
+    };
+
 

@@ -2,7 +2,7 @@
     "development": {
         "username": "root",
 
-        "password": null,
+        "password": "ChiangMai20!",
 
         "database": "bookmart",
         "host": "127.0.0.1",
@@ -11,7 +11,7 @@
     "test": {
         "username": "root",
 
-        "password": null,
+        "password": "ChiangMai20!",
         "database": "bookmart",
 
         "host": "127.0.0.1",
@@ -20,7 +20,7 @@
     "production": {
         "username": "root",
 
-        "password": null,
+        "password": "ChiangMai20!",
         "database": "bookmart",
 
         "host": "127.0.0.1",

@@ -43,18 +43,16 @@ module.exports = function(sequelize, DataTypes) {
 
         city: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false, 
         },
         state: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+           
         },
         zip: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true,
             validate: {
                 isInt: true,
                 min: 5
@@ -87,6 +85,9 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Comment, {
             onDelete: "cascade"
         });
+        User.hasMany(models.Post, {
+            onDelete: "cascade"
+          });
     };
     return User;
 };
