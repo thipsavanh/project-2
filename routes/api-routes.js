@@ -1,7 +1,8 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-// Will add dotenv in later 
+var axios = require("axios")
+    // Will add dotenv in later 
 var stripe = require('stripe')('sk_test_Em0lVIiWzkkDqEro2ocRUt1400SCdpJAEz');
 
 var Pusher = require('pusher');
@@ -12,7 +13,7 @@ var pusher = new Pusher({
     secret: 'c1dea7cde1aa39a86b01',
     cluster: 'us2',
     encrypted: true
-  });
+});
 
 
 module.exports = function(app) {
@@ -20,9 +21,11 @@ module.exports = function(app) {
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function(req, res) {
+
+        // Sending back a password, even a hashed password, isn't a good idea
         res.json({
-          email: req.user.email,
-          id: req.user.id
+            email: req.user.email,
+            id: req.user.id
         });
     });
 
@@ -31,6 +34,8 @@ module.exports = function(app) {
     // otherwise send back an error
     app.post("/api/signup", function(req, res) {
         console.log(req.body)
+            // res.redirect(307, "/subscription");
+        res.send(200)
         db.User.create({
                 username: req.body.username,
                 email: req.body.email,
@@ -42,8 +47,20 @@ module.exports = function(app) {
                 state: req.body.state,
                 zip: req.body.zip
             })
-            .then(function() {
-                res.redirect(307, "/subscription");
+            .then(function(data) {
+                res.status(200).send;
+                // res.redirect(307, "/subscription");
+                // if it works then send a response (data) from seq. db and send this in the res.send
+                // if (!err) {
+                //     res.status(200).send;
+                //     // The user is not logged in, send back an empty object
+                // } else {
+                //     // Otherwise send back the user's email and id
+                //     // Sending back a password, even a hashed password, isn't a good idea
+
+                //         return res.status(200).json({ message: "user created" });
+                //       }).catch(Sequelize.ValidationError, function (msg) {
+                //         return res.status(422).send(err.errors);
             })
             .catch(function(err) {
 
@@ -85,7 +102,7 @@ module.exports = function(app) {
           },
           include: [db.Post]
         }).then(function(dbUser) {
-          res.json(dbUser);
+            res.json(dbUser);
         });
       }); 
 
@@ -99,6 +116,7 @@ module.exports = function(app) {
     });
   });
 
+
   app.post('/blogpostcomment', function(req, res){
     console.log(req.body);
     var newComment = {
@@ -108,7 +126,7 @@ module.exports = function(app) {
     pusher.trigger('flash-comments', 'new_comment', newComment);
     res.json({  created: true });
   });
-      
+     
 
   app.post("/api/cms", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
@@ -128,13 +146,17 @@ module.exports = function(app) {
   });
 
     app.post("/bookshelf", function(req, res) {
-        console.log(req.body)
+        // console.log(req.body)
+        // console.log(res)
+
+        console.log(req.user.id)
+
         book = {
             title: req.body.title,
             author: req.body.author,
             image: req.body.image,
             ISBN: req.body.isbn,
-            UserId: 1
+            UserId: req.user.id
         }
         console.log(book)
         db.Library.create(book)
@@ -152,6 +174,26 @@ module.exports = function(app) {
         // req.logout();
         res.redirect("/");
     });
+
+    app.get("/getbooks/:title", function(req, res) {
+        // req.params.title
+        console.log(req.params.title)
+        var yourAPIKey = "AIzaSyDkN88vIBWXAbfxV4WBnTEVJ8aZeh93mks";
+        // Send an AJAX GET-request with jQuery TO GOOGLE BOOKS API
+        var queryURL = `https://www.googleapis.com/books/v1/volumes?q=search+${req.params.title}+maxResults=5&${yourAPIKey}`
+            //  https://www.googleapis.com/books/v1/volumes?q=${isbn}&key=${yourAPIKey} 
+
+        axios.get(queryURL).then(function(response) {
+            console.log(response.data.items[0].volumeInfo.title)
+
+            res.json(response.data)
+                // console.log(response.items[0].volumeInfo.title)
+                // console.log(response.items[0].volumeInfo.authors)
+                // console.log(response.items[0].volumeInfo.description)
+                // console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail)
+        })
+    });
+
 
     app.get("/wishlist", function(req, res) {
         // req.logout();
@@ -175,16 +217,22 @@ module.exports = function(app) {
                 res.status(401).json(err);
             });
     });
-    // app.post("/bookshelf", function(req, res) {
-    //     // req.logout();
-    //     res.redirect("/");
-    // });
+
+    app.post("/subscription", function(req, res) {
+        console.log("test")
+    });
 
     // Route for logging user out
     app.get("/logout", function(req, res) {
         req.logout();
         res.redirect("/");
     });
+
+    app.get("/blogpost", function(req, res) {
+        req.logout();
+        res.redirect("/");
+    });
+
 
     // Route for getting some data about our user to be used client side
     app.get("/api/user_data", function(req, res) {
@@ -201,13 +249,8 @@ module.exports = function(app) {
         }
     });
 
-};
-
-
-   
-
     //Route for payment method 
-    app.get('/setup_intents', async (req, res) => {
+    app.get('/setup_intents', async(req, res) => {
 
         const setupIntent = await stripe.setupIntents.create({
             payment_method_types: ['card'],
@@ -222,54 +265,54 @@ module.exports = function(app) {
         'Silver-plan',
         'Bronze-plan',
     ]
-    
-    app.post('/confirmed_subscription', async (req, res) => {
+
+    app.post('/confirmed_subscription', async(req, res) => {
         //create customer
         //create subscription
         let customer;
         let subscription;
         let name;
-       
-    
-        try{
-          customer = await stripe.customers.create({
-            email: req.body.email,
-            name: req.body.name,
-            payment_method: req.body.payment_method,
-            name: req.body.name,
-            invoice_settings: {
-              default_payment_method: req.body.payment_method,
-            },
-          });
-        } catch(e) {
-          console.log(e);
-          return res
-          .status(422)
-          .json({
-            message: 'Failed to create customer!',
-            details: e
-          });
-        }
-    
+
+
         try {
-          subscription = await stripe.subscriptions.create({
-            customer: customer.id,
-            //cancel_at: monthFromNOw(req.body.installments),
-            items: [{
-              plan: PLANS[req.body.subscription],
-              quantity: 1,
-            }]
-          });
-        } catch(e) {
-          console.log(e);
-          return res
-          .status(422)
-          .json({
-            message: "Failed to create subscription",
-            details: e
-          });
+            customer = await stripe.customers.create({
+                email: req.body.email,
+                name: req.body.name,
+                payment_method: req.body.payment_method,
+                name: req.body.name,
+                invoice_settings: {
+                    default_payment_method: req.body.payment_method,
+                },
+            });
+        } catch (e) {
+            console.log(e);
+            return res
+                .status(422)
+                .json({
+                    message: 'Failed to create customer!',
+                    details: e
+                });
         }
 
-      })
+        try {
+            subscription = await stripe.subscriptions.create({
+                customer: customer.id,
+                //cancel_at: monthFromNOw(req.body.installments),
+                items: [{
+                    plan: PLANS[req.body.subscription],
+                    quantity: 1,
+                }]
+            });
+        } catch (e) {
+            console.log(e);
+            return res
+                .status(422)
+                .json({
+                    message: "Failed to create subscription",
+                    details: e
+                });
+        }
+
+    })
 };
 

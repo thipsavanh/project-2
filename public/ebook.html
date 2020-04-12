@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bookmart - Free Ebooks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+
+    <link href="stylesheets/parallex.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <script type="text/javascript" src="js/ebook.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
+            <span class="sr-only"> Toggle navigation </span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button> -->
+        <img class="navbrand mx-auto" src="images/book.png" alt="Bookmart LOGO">
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light mx-auto">
+        <div class="navbar-nav mx-auto">
+            <a class="nav-item active nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+
+
+            <a class="nav-item nav-link" href="/login">Login</a>
+
+
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+
+
+            <a class="nav-item nav-link" href="/ebook">Free E-books</a>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <div class="features paralsec" id="features">
+        <div class="section-heading text-center">
+            <section class="cta">
+                <div class="cta-content">
+
+                </div>
+                <div class="row"></div>
+        </div>
+
+    </div>
+    </section>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+
+                <div class="cta-content">
+
+                    <hr>
+                </div>
+            </div>
+            <div class="overlay"></div>
+    </section>
+
+    </div>
+
+    <div class="jumbotron paral paralsec2">
+        <h1 class="display-3">
+            Feel free to search and read one of the many free books available through Google's Ebook.
+        </h1>
+        <p class="lead">Consider becoming a Bookworm Today!</p>
+        <p class="lead">
+            <a class="btn btn-warning btn-lg btn-md" href="#" role="button">Subscribe Today</a>
+        </p>
+    </div>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <section class="cta">
+                    <div class="cta-content">
+
+                    </div>
+                    <div class="overlay"></div>
+                </section>
+                <hr>
+            </div>
+
+    </section>
+
+    <hr>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="text-center card-header">
+                        <h4>Find a book to read</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="POST" role="form">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="title" placeholder="Book Title">
+                            </div>
+                        </form>
+                        <br>
+                        <div class="text-right">
+                            <button id="find-book" type="submit" value="Book Search" class="btn btn-primary btn-md">
+                              <span class="fa fa-book"></span> Search</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="text-center card-header">
+                        <h4>Search Results</h4>
+                    </div>
+                    <hr>
+                    <div class="search-results">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+    <div class="cover">
+        <div class="container-fluid">
+            <div id="viewerCanvas" style="width: 600px; height: 500px"></div>
+
+
+        </div>
+    </div>
+
+
+    </div>
+
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <section class="cta">
+                    <div class="cta-content">
+
+                    </div>
+                    <div class="overlay"></div>
+                </section>
+                <hr>
+            </div>
+
+    </section>
+
+
+    <footer>
+
+        <!-- Footer -->
+        <div class="container">
+            <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#!">About</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="/members.html">The Library</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">Bookworm Dashboard</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">The Clew</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
+
+    <script type="text/javascript" src="js/login.js"></script>
+
+</body>
+
+</html>

@@ -2,71 +2,73 @@
 <html lang="en">
 
 <head>
-  <title>User Sign Up Page</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./stylesheets/subscription_page.css" >
+    <title>Bookmart - Subscription</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+    <link href="stylesheets/subscription_page.css" rel="stylesheet">
 </head>
 
+
 <body>
-  <div id="main">
-    <div id="container">
-      <h1 class="price-header">Pricing Plans</h1>
-      <div class="box">
-          <div class="bronze">
-              <div class="plan-title">
-                  <h2>Bronze Plan</h2>
-              </div>
-              <div class="plan-body">
-                  <h1 id="plan-value">$7.00 <small class="text-muted">/ month</small></h1>
-                  <ul>
-                      <li>1 users included</li>
-                      <li>3 Books</li>
-                      <li>Email support</li>
-                      <li>Help center access</li>  
-                    </ul>
-              </div>
-          </div>
-          <div class="silver">
-              <div class="plan-title">
-                  <h2>Silver Plan</h2>
-              </div>
-              <div class="plan-body">
-                  <h1 id="plan-value">$42.00 <small class="text-muted">/ 6 months</small></h1>
-                  <ul>
-                      <li>2 users included</li>
-                      <li>20 Books</li>
-                      <li>Priority email support</li>
-                      <li>Help center access</li>
-                  </ul>
-              </div>
-          </div>
-          <div class="gold">
-              <div class="plan-title">
-                  <h2>Gold Plan</h2>
-              </div>
-              <div class="plan-body">
-                  <h1 id="plan-value">$82.00 <small class="text-muted">/ 12 month</small></h1>
-                  <ul>
-                      <li>5 users included</li>
-                      <li>50 Books</li>
-                      <li>Phone and email support</li>
-                      <li>Help center access</li>
-                  </ul>
-              </div>
-          </div> 
-        </div>
-      <br>
-      <div id="panel">
-        <img src="./assets/book.png" style="width: 300px" alt="booklogo">
-        <br>
-        <hr>
-        <fieldset>
-          <label>
+    <div id="main">
+        <div id="container">
+            <h1 class="price-header">Pricing Plans</h1>
+            <div class="box">
+                <div class="bronze">
+                    <div class="plan-title">
+                        <h2>Bronze Plan</h2>
+                    </div>
+                    <div class="plan-body">
+                        <h1 id="plan-value">$7.00 <small class="text-muted">/ month</small></h1>
+                        <ul>
+                            <li>1 users included</li>
+                            <li>3 Books</li>
+                            <li>Email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="silver">
+                    <div class="plan-title">
+                        <h2>Silver Plan</h2>
+                    </div>
+                    <div class="plan-body">
+                        <h1 id="plan-value">$42.00 <small class="text-muted">/ 6 months</small></h1>
+                        <ul>
+                            <li>2 users included</li>
+                            <li>20 Books</li>
+                            <li>Priority email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="gold">
+                    <div class="plan-title">
+                        <h2>Gold Plan</h2>
+                    </div>
+                    <div class="plan-body">
+                        <h1 id="plan-value">$82.00 <small class="text-muted">/ 12 month</small></h1>
+                        <ul>
+                            <li>5 users included</li>
+                            <li>50 Books</li>
+                            <li>Phone and email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="panel">
+                <img src="images/book.png" style="width: 300px" alt="booklogo">
+                <br>
+                <hr>
+                <fieldset>
+                    <label>
             <span>Email</span>
             <input type="email" class="field" id="email-input" placeholder="jenny.rosen@example.com">
           </label>
-          <label>
+                    <label>
             <span>Subscription Options</span>
             <select class="field" id="sub-input">
                 <option value="1">Gold Plan</option>
@@ -74,22 +76,23 @@
                 <option value="3">Bronze Plan</option>
             </select>
           </label>
-          <label>
+                    <label>
             <span>Name on Card</span>
             <input type="name" class="field" id="name-input" placeholder="Jenny Rosen">
           </label>
-          <label>
+                    <label>
             <span>Card</span>
             <div id="card" class="field"></div>
           </label>
-        </fieldset>
-        <button type="submit" id="pay-btn">Pay</button>
-      </div>
+                </fieldset>
+                <button type="submit" id="pay-btn">Pay</button>
+            </div>
+        </div>
     </div>
-  </div>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="js/subscription.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/subscription.js"></script>
 </body>
+
 </html>

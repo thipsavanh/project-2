@@ -1,5 +1,7 @@
 form.signup,
 form.login {
+<<<<<<< HEAD
+=======
 
   margin-top: 50px;
 }
@@ -308,6 +310,7 @@ animation-fill-mode:forwards; /*when the spec is finished*/
   -ms-transform:  translate(0px,0px)  ;
 }
 =======
+>>>>>>> 6cbdf78d627aec3949b0377ea6e47472ba24f8e0
     margin-top: 50px;
 }
 
@@ -317,5 +320,4 @@ animation-fill-mode:forwards; /*when the spec is finished*/
 
 .bg-primary {
     margin-top: 80px;
-
 }
