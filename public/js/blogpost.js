@@ -3,10 +3,10 @@
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var serverUrl = "/",
+    var serverUrl = "/blogpost",
         comments = [],
         pusher = new Pusher('85a6ad4dfa25e855b', {
-          cluster: 'ap2',
+          cluster: 'us2',
           encrypted: true
         }),
         // Subscribing to the 'flash-comments' Channel
@@ -32,11 +32,15 @@
       commentsList.appendChild(newCommentNode);
     }
 
+    var newCommentUser = $("#new_comment_userName");
+    var comment = $("#new_comment_text");
+
     function addNewComment(event){
+      console.log("hi");
       event.preventDefault();
       var newComment = {
-        "userName": document.getElementById('new_comment_userName').value,
-        "comment": document.getElementById('new_comment_text').value
+        user: newCommentUser.val(),
+        comment: comment.val()
       }
 
       var xhr = new XMLHttpRequest();

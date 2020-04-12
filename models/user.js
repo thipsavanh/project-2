@@ -38,13 +38,11 @@ module.exports = function(sequelize, DataTypes) {
         address2: {
             type: DataTypes.STRING,
             allowNull: true,
-
         },
 
         city: {
             type: DataTypes.STRING,
             allowNull: false,
-
         },
         state: {
             type: DataTypes.STRING,
@@ -84,6 +82,9 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Comment, {
             onDelete: "cascade"
         });
+        User.hasMany(models.Post, {
+            onDelete: "cascade"
+          });
     };
     return User;
 };

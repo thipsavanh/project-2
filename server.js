@@ -4,6 +4,7 @@ var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
+
 var path = require('path');
 var bodyParser = require('body-parser');
 
@@ -31,14 +32,31 @@ app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true 
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
+
+// Error Handler for 404 Pages
+// app.use(function(req, res, next) {
+//   var error404 = new Error('Route Not Found');
+//   error404.status = 404;
+//   next(error404);
+// });
+
+
+
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
+
 db.sequelize.sync({ force: true }).then(function() {
     app.listen(PORT, function() {
         console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
     });
 
 });
+

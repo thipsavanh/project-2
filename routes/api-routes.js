@@ -21,6 +21,7 @@ module.exports = function(app) {
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function(req, res) {
+
         // Sending back a password, even a hashed password, isn't a good idea
         res.json({
             email: req.user.email,
@@ -69,28 +70,80 @@ module.exports = function(app) {
             });
     });
 
+    app.post("/api/user", function(req, res) {
+        db.User.create(req.body).then(function(dbUser) {
+          res.json(dbUser);
+        });
+      });
 
-    app.get("/api/blogpost", function(req, res) {
-        db.User.findall({
-            include: [db.Blogpost]
+    app.get("/api/posts", function(req, res) {
+        var query = {};
+        if (req.query.user_id) {
+          query.UserId = req.query.user_id;
+        }
+        db.Post.findAll({
+          where: query,
+          include: [db.User]
+        }).then(function(dbPost) {
+          res.json(dbPost);
+        });
+      });
+  
+    app.post("/api/posts", function(req, res) {
+        db.Post.create(req.body).then(function(dbPost) {
+          res.json(dbPost);
+        });
+      });
+  
+  app.get("/api/user/:id", function(req, res) {
+        db.User.findOne({
+          where: {
+            id: req.params.id
+          },
+          include: [db.Post]
         }).then(function(dbUser) {
             res.json(dbUser);
         });
+      }); 
+
+  app.delete("/api/posts/:id", function(req, res) {
+    db.Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
     });
-
-    // app.post("/api/blogpost", function(req, res) {
-    //     console.log(req.body);
-    //     db.User.create({
-    //         newComment = {
-    //             userName: req.body.userName,
-    //             comment: req.body.comment
-    //         },
-    //         .pusher.trigger('flash-comments', 'new_comment', newComment);
-    //         res.json({ created: true });
-    //     });
-    // });
+  });
 
 
+  app.post('/blogpostcomment', function(req, res){
+    console.log(req.body);
+    var newComment = {
+      name: req.body.name,
+      comment: req.body.comment
+    }
+    pusher.trigger('flash-comments', 'new_comment', newComment);
+    res.json({  created: true });
+  });
+     
+
+  app.post("/api/cms", function(req, res) {
+    db.User.create(req.body).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  app.post('/blogpostcomment', function(req, res){
+    console.log("hi");
+    console.log(req.body);
+    var newComment = {
+      name: req.body.name,
+      comment: req.body.comment
+    }
+    pusher.trigger('flash-comments', 'new_comment', newComment);
+    res.json({  created: true });
+  });
 
     app.post("/bookshelf", function(req, res) {
         // console.log(req.body)
@@ -196,9 +249,6 @@ module.exports = function(app) {
         }
     });
 
-
-
-
     //Route for payment method 
     app.get('/setup_intents', async(req, res) => {
 
@@ -265,3 +315,4 @@ module.exports = function(app) {
 
     })
 };
+

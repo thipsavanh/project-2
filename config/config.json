@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "DeAnne09",
+        "password": null,
         "database": "bookmart",
         "host": "127.0.0.1",
         "dialect": "mysql"
