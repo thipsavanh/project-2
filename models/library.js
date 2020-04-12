@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true,
         },
         ISBN: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         }

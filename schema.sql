@@ -1,2 +1,2 @@
 DROP DATABASE IF EXISTS bookmart;
-CREATE DATABASE bookmart;
+CREATE DATABASE bookmart; 
