@@ -11,6 +11,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/blogpost.html"));
   });
 
+
   app.get("/user", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });
@@ -19,6 +20,30 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/cms.html"));
   });
 
+
+
+
+  // Here we've add our isAuthenticated middleware to this route.
+  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  // app.get("/members", isAuthenticated, function(req, res) {
+  //   res.sendFile(path.join(__dirname, "../public/members.html"));
+  // });
+
+  app.get("/signup", function(req, res) {
+    if(req.user) {
+      res.redirect("/signup");
+    }
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+  app.get("/subscription", function(req, res) {
+    if(req.user) {
+      res.redirect("/subscription");
+    }
+    res.sendFile(path.join(__dirname, "../public/subscription.html"));
+  });
+
+};
 
     app.get("/", function(req, res) {
         // If the user already has an account send them to the members page
@@ -30,7 +55,6 @@ module.exports = function(app) {
 
     app.get("/signup", function(req, res) {
         // If the user already has an account send them to the members page
-
         res.sendFile(path.join(__dirname, "../public/signup.html"));
     });
 
@@ -38,6 +62,12 @@ module.exports = function(app) {
         // If the user already has an account send them to the members page
 
         res.sendFile(path.join(__dirname, "../public/bookshelf.html"));
+    });
+
+    app.get("/wishlist", function(req, res) {
+        // If the user already has an account send them to the members page
+
+        res.sendFile(path.join(__dirname, "../public/wishlist.html"));
     });
 
     app.get("/login", function(req, res) {
@@ -53,5 +83,6 @@ module.exports = function(app) {
     app.get("/members", isAuthenticated, function(req, res) {
         res.sendFile(path.join(__dirname, "../public/members.html"));
     });
+
 };
 

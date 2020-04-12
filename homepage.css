@@ -1,0 +1,53 @@
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+
+.nav-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-left {
+  text-align: justify;
+}
+
+.nav-right {
+  text-align: justify;
+}
+
+
+body {
+  background-color: #FAF0E6;
+}
+
+.col-left, .col-right{
+  display: inline-flex;
+}
+
+
+.card-message {
+  width: 350px;
+  display: inline-block;
+}
+
+h1 {
+  text-align: center ;
+}
+.card-top {
+  margin-left: 50px;
+}
+
+.logos {
+  margin-left: 150px;
+}
+
+#div-info {
+  display: inline;
+}
+
+footer {
+  margin-top: 100px;
+  text-align: center;
+}

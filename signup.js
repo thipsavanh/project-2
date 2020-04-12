@@ -11,10 +11,9 @@ $(document).ready(function() {
     var stateInput = $("input#state-input");
     var zipInput = $("input#zip-input");
 
-    console.log("I am working")
-        // When the signup button is clicked, we validate the email and password are not blank
+
+    // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function(event) {
-        console.log("heyyy")
         event.preventDefault();
         var userData = {
             username: usernameInput.val().trim(),
@@ -33,19 +32,20 @@ $(document).ready(function() {
         }
         // If we have an email and password, run the signUpUser function
         signUpUser(userData.username, userData.email, userData.password, userData.full_name, userData.address, userData.address2, userData.city, userData.state, userData.zip);
-        usernameInput.val("");
-        emailInput.val("");
-        passwordInput.val("");
-        fullnameInput.val("");
-        addressInput.val("");
-        address2Input.val("");
-        cityInput.val("");
-        stateInput.val("");
-        zipInput.val("");
+        // usernameInput.val("");
+        // emailInput.val("");
+        // passwordInput.val("");
+        // fullnameInput.val("");
+        // addressInput.val("");
+        // address2Input.val("");
+        // cityInput.val("");
+        // stateInput.val("");
+        // zipInput.val("");
     });
 
     // Does a post to the signup route. If successful, we are redirected to the members page
     // Otherwise we log any errors
+   
     function signUpUser(username, email, password, full_name, address, address2, city, state, zip) {
         $.post("/api/signup", {
                 username: username,
@@ -60,24 +60,21 @@ $(document).ready(function() {
             })
             .then(function(data) {
                 console.log()
-                //window.location.replace("/subscription");
-                window.location.replace("/");
-
-                // If there's an error, handle it by throwing up a bootstrap alert
+                window.location.replace("/subscription");
+                //If there's an error, handle it by throwing up a bootstrap alert
             })
             .catch(handleLoginErr);
 
-         redirect();
+        // redirect();
     };
 
     function handleLoginErr(err) {
+        console.log(err)
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
-
     };
 
-   
+    // function redirect(){
+    //     window.location.replace("/subscription");
+    // };
 });
-
-
-

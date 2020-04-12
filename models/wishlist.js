@@ -10,18 +10,18 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        edition: {
+        image: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true,
         }
 
     });
 
     Wishlist.associate = function(models) {
-        models.Wishlist.belongsTo(models.User, {
+        Wishlist.belongsTo(models.User, {
             onDelete: "CASCADE",
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
 
