@@ -97,17 +97,16 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/posts", function(req, res) {
-    db.Post.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbPost) {
-      res.json(dbPost);
-    });
+  app.post('/blogpostcomment', function(req, res){
+    console.log(req.body);
+    var newComment = {
+      name: req.body.name,
+      comment: req.body.comment
+    }
+    pusher.trigger('flash-comments', 'new_comment', newComment);
+    res.json({  created: true });
   });
+      
 
   app.post("/api/cms", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
@@ -116,6 +115,7 @@ module.exports = function(app) {
   });
 
   app.post('/blogpostcomment', function(req, res){
+    console.log("hi");
     console.log(req.body);
     var newComment = {
       name: req.body.name,
