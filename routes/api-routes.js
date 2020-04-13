@@ -70,9 +70,20 @@ module.exports = function(app) {
             });
     });
 
-    app.post("/api/user", function(req, res) {
-        db.User.create(req.body).then(function(dbUser) {
-          res.json(dbUser);
+    app.get("/api/users", function(req, res) {
+      // Here we add an "include" property to our options in our findAll query
+      // We set the value to an array of the models we want to include in a left outer join
+      // In this case, just db.Post
+      db.User.findAll({
+        include: [db.Post]
+      }).then(function(dbUser) {
+        res.json(dbUser);
+      });
+    });
+  
+    app.post("/api/users", function(req, res) {
+        db.User.create(req.body).then(function(dbUsers) {
+          res.json(dbUsers);
         });
       });
 
@@ -95,14 +106,14 @@ module.exports = function(app) {
         });
       });
   
-  app.get("/api/user/:id", function(req, res) {
-        db.User.findOne({
+  app.get("/api/users/:id", function(req, res) {
+        db.Users.findOne({
           where: {
             id: req.params.id
           },
           include: [db.Post]
-        }).then(function(dbUser) {
-            res.json(dbUser);
+        }).then(function(dbUsers) {
+            res.json(dbUsers);
         });
       }); 
 
@@ -117,33 +128,29 @@ module.exports = function(app) {
   });
 
 
-  app.post('/blogpostcomment', function(req, res){
-    console.log(req.body);
-    var newComment = {
-      name: req.body.name,
-      comment: req.body.comment
-    }
-    pusher.trigger('flash-comments', 'new_comment', newComment);
-    res.json({  created: true });
-  });
+  // app.post('/blogpostcomment', function(req, res){
+  //   console.log(req.body);
+  //   var newComment = {
+  //     name: req.body.name,
+  //     comment: req.body.comment
+  //   }
+  //   pusher.trigger('flash-comments', 'new_comment', newComment);
+  //   res.json({  created: true });
+  // });
      
-
-  app.post("/api/cms", function(req, res) {
-    db.User.create(req.body).then(function(dbUser) {
-      res.json(dbUser);
+  app.put("/api/posts", function(req, res) {
+    db.Post.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
+ 
 
-  app.post('/blogpostcomment', function(req, res){
-    console.log("hi");
-    console.log(req.body);
-    var newComment = {
-      name: req.body.name,
-      comment: req.body.comment
-    }
-    pusher.trigger('flash-comments', 'new_comment', newComment);
-    res.json({  created: true });
-  });
 
     app.post("/bookshelf", function(req, res) {
         // console.log(req.body)
