@@ -6,9 +6,7 @@ $(document).ready(function() {
         console.log(data)
     });
 
-    // $.get("/api/user_data").then(function(data) {
-    //     // console.log(data.id)
-    // });
+
 
 
 
@@ -64,7 +62,7 @@ $(document).ready(function() {
                 var cardDiv2 = $("<div>").addClass("card-body")
                 cardDiv.append(imageTag, cardDiv2);
                 var titleDiv = $("<h4>").addClass("card-title").text(JSON.stringify(response.items[i].volumeInfo.title).replace(/['"]+/g, ''))
-                var desDiv = $("<p>").addClass("card-text").text(JSON.stringify(response.items[i].volumeInfo.description).replace(/['"]+/g, ''))
+                var desDiv = $("<p>").addClass("card-text").text(JSON.stringify(response.items[i].searchInfo.textSnippet).replace(/['"]+/g, ''))
                 var isbnDiv = $("<p>").addClass("card-text").text(JSON.stringify(response.items[i].volumeInfo.industryIdentifiers[0].identifier).replace(/['"]+/g, ''))
                 var authorDiv = $("<p>").addClass("card-text").text("Written by: " + JSON.stringify(response.items[i].volumeInfo.authors[0]).replace(/['"]+/g, ''));
                 //create a link to add to bookshelf
@@ -76,6 +74,7 @@ $(document).ready(function() {
                     e.preventDefault();
                     var myId = e.target.id
                     let bookobject = library[myId]
+
                     addBook(bookobject.title, bookobject.author, bookobject.image, bookobject.isbn);
                     // library[myId]
                     // console.log(library[myId].title);
@@ -101,14 +100,22 @@ $(document).ready(function() {
 
     });
 
+    function getID() {
+        $.get("/api/user_data").then(function(data) {
+            let id = data.id
+                // console.log(id)
+            return id
+        });
+    }
 
     function addBook(title, author, image, isbn) {
+        getID()
         console.log(title, author, image, isbn)
-
         $.post("/bookshelf", {
             title: title,
             author: author,
             image: image,
+            isbn: isbn,
             isbn: isbn
         }).done
     }
