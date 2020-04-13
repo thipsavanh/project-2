@@ -5,145 +5,170 @@
     <title>Bookmart - Sign Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-    <link href="stylesheets/style.css" rel="stylesheet">
+
+    <link href="stylesheets/parallex.css" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
-             <span class="sr-only"> Toggle navigation </span>
+        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
+            <span class="sr-only"> Toggle navigation </span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-           </button>
-        <a class="navbar-brand mart" href="/"><img src="/images/bookmart.png" alt="Bookmart LOGO"></a>
+        </button> -->
+        <img class="navbrand mx-auto" src="images/book.png" alt="Bookmart LOGO">
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light mx-auto">
+        <div class="navbar-nav mx-auto">
+            <a class="nav-item active nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 
 
-        <ul class="nav navbar-nav pull-right">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/ebook">Free E-books</a>
-            </li>
-        </ul>
+            <a class="nav-item nav-link" href="/login">Login</a>
+
+
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+
+
+            <a class="nav-item nav-link" href="/ebook">Free E-books</a>
         </div>
     </nav>
-    <section class="bg-primary" id="features">
-        <div class="container">
-            <div class="section-heading">
-                <section class="cta">
-                    <div class="cta-content">
-                        <div class="container">
-                            <h2 class="section-heading">Sign Up Form</h2>
-                        </div>
-                    </div>
-            </div>
 
-        </div>
-        <hr>
 
-        </section>
+    <div class="features paralsec" id="features">
+        <div class="section-heading text-center">
+            <section class="cta">
+                <div class="cta-content">
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <form class="signup">
-                        <div class="form-group">
-                            <label for="exampleInputUsername">Username</label>
-                            <input type="username" class="form-control" id="username-input" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="email-input" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="password-input" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputname1">Full Name</label>
-                            <input type="name" class="form-control" id="fullname-input" placeholder="Full Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputAddress1">Address</label>
-                            <input type="address" class="form-control" id="address-input" placeholder="Address">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputAddress2">Address 2</label>
-                            <input type="address2" class="form-control" id="address2-input" placeholder="Address2">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputCity">City</label>
-                            <input type="city" class="form-control" id="city-input" placeholder="City">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputState">State</label>
-                            <input type="state" class="form-control" id="state-input" placeholder="State">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputZip">Zip</label>
-                            <input type="zip" class="form-control" id="zip-input" placeholder="Zip">
-                        </div>
-                        <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            <span class="sr-only">Error:</span> <span class="msg"></span>
-                        </div>
-                        <button type="submit" class="btn btn-default">Sign Up</button>
-                    </form>
-                    <br />
-                    <p>Or log in <a href="/login">here</a></p>
                 </div>
-                <hr>
-            </div>
+                <div class="row"></div>
         </div>
-        <section class="features" id="features">
-            <div class="container">
-                <div class="section-heading text-center">
-                    <section class="cta">
-                        <div class="cta-content">
 
-                        </div>
-                        <div class="overlay"></div>
-                    </section>
+    </div>
+    </section>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+
+                <div class="cta-content">
+
                     <hr>
                 </div>
-
-        </section>
-
-        <footer>
-
-            <!-- Footer -->
-            <div class="container">
-                <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="#!">About</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="/members.html">The Library</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!">Bookworm Dashboard</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!">The Clew</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">FAQ</a>
-                    </li>
-                </ul>
             </div>
-        </footer>
+            <div class="overlay"></div>
+    </section>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <br>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Sign Up Form</h2>
+                <form class="signup">
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputUsername">Username</label>
+                        <input type="username" class="form-control" id="username-input" placeholder="Username">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="email-input" placeholder="Email">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="password-input" placeholder="Password">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputname1">Full Name</label>
+                        <input type="name" class="form-control" id="fullname-input" placeholder="Full Name">
+                    </div>
 
-        <script type="text/javascript" src="js/signup.js"></script>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputAddress1">Address</label>
+                        <input type="address" class="form-control" id="address-input" placeholder="Address">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputAddress2">Address 2</label>
+                        <input type="address2" class="form-control" id="address2-input" placeholder="Address2">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleInputCity">City</label>
+                        <input type="city" class="form-control" id="city-input" placeholder="City">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="exampleInputState">State</label>
+                        <input type="state" class="form-control" id="state-input" placeholder="State">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="exampleInputZip">Zip</label>
+                        <input type="zip" class="form-control" id="zip-input" placeholder="Zip">
+                    </div>
+                    <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span> <span class="msg"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button type="submit" class="btn btn-default">Sign Up</button>
+                </form>
+                <br>
+                <p>Or log in <a href="/login">here</a></p>
+
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <section class="cta">
+                    <div class="cta-content">
+
+                    </div>
+                    <div class="overlay"></div>
+                </section>
+
+            </div>
+
+    </section>
+
+    <footer>
+        <br>
+        <!-- Footer -->
+        <div class="container">
+            <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#!">About</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="/members.html">The Library</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">Bookworm Dashboard</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">The Clew</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
+
+    <script type="text/javascript" src="js/login.js"></script>
 
 </body>
 
