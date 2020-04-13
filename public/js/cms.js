@@ -9,7 +9,7 @@ $(document).ready(function() {
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
   var url = window.location.search;
   var postId;
-  var userId;
+  var UserId;
   // Sets a flag for whether or not we're updating a post to be false initially
   var updating = false;
 
@@ -21,7 +21,7 @@ $(document).ready(function() {
   }
   // Otherwise if we have an user_id in our url, preset the user select box to be our user
   else if (url.indexOf("?user_id=") !== -1) {
-    userId = url.split("=")[1];
+    UserId = url.split("=")[1];
   }
 
   // Getting the users, and their posts
@@ -43,9 +43,9 @@ $(document).ready(function() {
       body: bodyInput
         .val()
         .trim(),
-      userId: userSelect.val()
+      UserId: userSelect.val()
     };
-
+    console.log(newPost);
     // If we're updating a post run updatePost to update a post
     // Otherwise run submitPost to create a whole new post
     if (updating) {
@@ -79,11 +79,11 @@ $(document).ready(function() {
     }
     $.get(queryUrl, function(data) {
       if (data) {
-        console.log(data.userId || data.id);
+        console.log(data.UserId || data.id);
         // If this post exists, prefill our cms forms with its data
         titleInput.val(data.title);
         bodyInput.val(data.body);
-        userId = data.userId || data.id;
+        UserId = data.UserId || data.id;
         // If we have a post with this id, set a flag for us to know to update the post
         // when we hit submit
         updating = true;
@@ -110,7 +110,7 @@ $(document).ready(function() {
     console.log(rowsToAdd);
     console.log(userSelect);
     userSelect.append(rowsToAdd);
-    userSelect.val(userId);
+    userSelect.val(UserId);
   }
 
   // Creates the user options in the dropdown

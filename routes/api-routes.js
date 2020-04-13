@@ -89,8 +89,8 @@ module.exports = function(app) {
 
     app.get("/api/posts", function(req, res) {
         var query = {};
-        if (req.query.user_id) {
-          query.UserId = req.query.user_id;
+        if (req.query.User_id) {
+          query.UserId = req.query.User_id;
         }
         db.Post.findAll({
           where: query,
@@ -101,6 +101,7 @@ module.exports = function(app) {
       });
   
     app.post("/api/posts", function(req, res) {
+      console.log(req.body);
         db.Post.create(req.body).then(function(dbPost) {
           res.json(dbPost);
         });
@@ -128,16 +129,19 @@ module.exports = function(app) {
   });
 
 
-  // app.post('/blogpostcomment', function(req, res){
-  //   console.log(req.body);
-  //   var newComment = {
-  //     name: req.body.name,
-  //     comment: req.body.comment
-  //   }
-  //   pusher.trigger('flash-comments', 'new_comment', newComment);
-  //   res.json({  created: true });
-  // });
-     
+  app.post('/blogpostcomment', function(req, res){
+    console.log(req.body);
+    var newComment = {
+      name: req.body.name,
+      comment: req.body.comment
+    }
+    pusher.trigger('flash-comments', 'new_comment', newComment);
+    res.json({  created: true });
+    // db.Comment.create(req.body).then(function(dbComment) {
+    //   res.json(dbComment);
+    // });
+  });
+
   app.put("/api/posts", function(req, res) {
     db.Post.update(
       req.body,
@@ -149,8 +153,21 @@ module.exports = function(app) {
       res.json(dbPost);
     });
   });
- 
 
+  app.post("/api/comments", function(req, res) {
+    comment= {
+      body: req.body.comment
+  }
+  console.log(comment)
+  db.Comment.create(comment)
+      .then(function() {
+          res.status(200).send;
+      })
+      .catch(function(err) {
+          console.log(err)
+          res.status(401).json(err);
+      });
+});
 
     app.post("/bookshelf", function(req, res) {
         // console.log(req.body)

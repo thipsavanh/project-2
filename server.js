@@ -8,15 +8,15 @@ var passport = require("./config/passport");
 var path = require('path');
 var bodyParser = require('body-parser');
 
-var Pusher = require('pusher');
+// var Pusher = require('pusher');
 
-var pusher = new Pusher({
-    appId: '979597',
-    key: 'fa885a6ad4dfa25e855b',
-    secret: 'c1dea7cde1aa39a86b01',
-    cluster: 'us2',
-    encrypted: true
-});
+// var pusher = new Pusher({
+//     appId: '979597',
+//     key: 'fa885a6ad4dfa25e855b',
+//     secret: 'c1dea7cde1aa39a86b01',
+//     cluster: 'us2',
+//     encrypted: true
+// });
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 8080;
