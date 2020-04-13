@@ -10,21 +10,17 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/subscription.html"));
     });
 
-
-  app.get("/blogpost", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/blogpost.html"));
-  });
-
-
-  app.get("/user", isAuthenticated, function(req, res) {
+  app.get("/user", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });
 
-  app.get("/cms", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
+  app.get("/cms", function(req, res) {
+    console.log("hey");
+    // if(req.user) {
+    //   res.redirect("/signup");
+    // }
+   res.sendFile(path.join(__dirname, "../public/cms.html"));
   });
-
-
 
 
   // Here we've add our isAuthenticated middleware to this route.
@@ -47,10 +43,14 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/subscription.html"));
   });
 
-};
 
 
-    app.get("/blogpost", isAuthenticated, function(req, res) {
+
+    app.get("/blogpost", function(req, res) {
+      console.log("hi");
+      // if(req.user) {
+      //   res.redirect("/signup");
+      // }
         res.sendFile(path.join(__dirname, "../public/blogpost.html"));
     });
 
@@ -87,6 +87,7 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/login.html"));
     });
     app.get("/blogpost", function(req, res) {
+      console.log("hello");
         // If the user already has an account send them to the members page
         if (req.user) {
             res.redirect("/members");
