@@ -23,14 +23,14 @@ module.exports = function(sequelize, DataTypes) {
             unique: true
         }
     });
-    Library.associate = function(models) {
-        Library.belongsTo(models.User, {
-            onDelete: "CASCADE",
-            foreignKey: {
-                allowNull: true
-            }
-        });
+    // Library.associate = function(models) {
+    //     Library.belongsTo(models.User, {
+    //         onDelete: "CASCADE",
+    //         foreignKey: {
+    //             allowNull: true
+    //         }
+    //     });
 
-    };
+    // };
     return Library;
 };
