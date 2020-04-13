@@ -21,6 +21,7 @@ module.exports = function(app) {
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function(req, res) {
+
         // Sending back a password, even a hashed password, isn't a good idea
         res.json({
             email: req.user.email,
@@ -69,28 +70,104 @@ module.exports = function(app) {
             });
     });
 
-
-    app.get("/api/blogpost", function(req, res) {
-        db.User.findall({
-            include: [db.Blogpost]
-        }).then(function(dbUser) {
-            res.json(dbUser);
-        });
+    app.get("/api/users", function(req, res) {
+      // Here we add an "include" property to our options in our findAll query
+      // We set the value to an array of the models we want to include in a left outer join
+      // In this case, just db.Post
+      db.User.findAll({
+        include: [db.Post]
+      }).then(function(dbUser) {
+        res.json(dbUser);
+      });
     });
+  
+    app.post("/api/users", function(req, res) {
+        db.User.create(req.body).then(function(dbUsers) {
+          res.json(dbUsers);
+        });
+      });
 
-    // app.post("/api/blogpost", function(req, res) {
-    //     console.log(req.body);
-    //     db.User.create({
-    //         newComment = {
-    //             userName: req.body.userName,
-    //             comment: req.body.comment
-    //         },
-    //         .pusher.trigger('flash-comments', 'new_comment', newComment);
-    //         res.json({ created: true });
-    //     });
+    app.get("/api/posts", function(req, res) {
+        var query = {};
+        if (req.query.User_id) {
+          query.UserId = req.query.User_id;
+        }
+        db.Post.findAll({
+          where: query,
+          include: [db.User]
+        }).then(function(dbPost) {
+          res.json(dbPost);
+        });
+      });
+  
+    app.post("/api/posts", function(req, res) {
+      console.log(req.body);
+        db.Post.create(req.body).then(function(dbPost) {
+          res.json(dbPost);
+        });
+      });
+  
+  app.get("/api/users/:id", function(req, res) {
+        db.Users.findOne({
+          where: {
+            id: req.params.id
+          },
+          include: [db.Post]
+        }).then(function(dbUsers) {
+            res.json(dbUsers);
+        });
+      }); 
+
+  app.delete("/api/posts/:id", function(req, res) {
+    db.Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+
+  app.post('/blogpostcomment', function(req, res){
+    console.log(req.body);
+    var newComment = {
+      name: req.body.name,
+      comment: req.body.comment
+    }
+    pusher.trigger('flash-comments', 'new_comment', newComment);
+    res.json({  created: true });
+    // db.Comment.create(req.body).then(function(dbComment) {
+    //   res.json(dbComment);
     // });
+  });
 
+  app.put("/api/posts", function(req, res) {
+    db.Post.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
 
+  app.post("/api/comments", function(req, res) {
+    comment= {
+      body: req.body.comment
+  }
+  console.log(comment)
+  db.Comment.create(comment)
+      .then(function() {
+          res.status(200).send;
+      })
+      .catch(function(err) {
+          console.log(err)
+          res.status(401).json(err);
+      });
+});
 
     app.post("/bookshelf", function(req, res) {
         // console.log(req.body)
@@ -196,9 +273,6 @@ module.exports = function(app) {
         }
     });
 
-
-
-
     //Route for payment method 
     app.get('/setup_intents', async(req, res) => {
 
@@ -265,3 +339,4 @@ module.exports = function(app) {
 
     })
 };
+
