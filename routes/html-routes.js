@@ -46,7 +46,7 @@ module.exports = function(app) {
 
 
 
-    app.get("/blogpost", function(req, res) {
+    app.get("/blog", function(req, res) {
       console.log("hi");
       // if(req.user) {
       //   res.redirect("/signup");

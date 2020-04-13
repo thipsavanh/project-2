@@ -9,12 +9,12 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Comment.associate = function(models) {
-        Comment.belongsTo(models.User, {
-            onDelete: "CASCADE",
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        // Comment.belongsTo(models.User, {
+        //     onDelete: "CASCADE",
+        //     foreignKey: {
+        //         allowNull: false
+        //     }
+        // });
 
         Comment.belongsTo(models.Blogpost, {
             onDelete: "CASCADE",

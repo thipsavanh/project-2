@@ -79,9 +79,9 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.Wishlist, {
             onDelete: "cascade"
         });
-        User.hasMany(models.Comment, {
-            onDelete: "cascade"
-        });
+        // User.hasMany(models.Comment, {
+        //     onDelete: "cascade"
+        // });
         User.hasMany(models.Post, {
             onDelete: "cascade"
           });
