@@ -59,25 +59,28 @@ $(document).ready(function() {
                 var cardDiv2 = $("<div>").addClass("card-body")
                 cardDiv.append(imageTag, cardDiv2);
                 var titleDiv = $("<h4>").addClass("card-title").text(JSON.stringify(response.items[i].volumeInfo.title).replace(/['"]+/g, ''))
-                var desDiv = $("<p>").addClass("card-text").text(JSON.stringify(response.items[i].searchInfo.textSnippet).replace(/['"]+/g, ''))
-                var isbnDiv = $("<p>").addClass("card-text").text(JSON.stringify(response.items[i].volumeInfo.industryIdentifiers[0].identifier).replace(/['"]+/g, ''))
+                var desDiv = $("<p>").addClass("card-text").text(JSON.stringify(response.items[i].volumeInfo.description).replace(/['"]+/g, ''))
+                var isbnDiv = $("<p>").addClass("card-text").text("ISBN: " + JSON.stringify(response.items[i].volumeInfo.industryIdentifiers[0].identifier).replace(/['"]+/g, ''))
                 var authorDiv = $("<p>").addClass("card-text").text("Written by: " + JSON.stringify(response.items[i].volumeInfo.authors[0]).replace(/['"]+/g, ''));
                 //create a link to add to bookshelf
                 var cardDiv3 = $("<div>").addClass("card-body");
                 cardDiv2.append(titleDiv, authorDiv, desDiv, isbnDiv, cardDiv3);
-                var button = $("<button>").addClass("card-link").text("Add to Bookshelf").attr("id", buttonID);
+
+
+                var button = $("<button>").addClass("card-link btn btn-warning btn-md").text("Add to Bookshelf").attr("id", buttonID);
 
                 button.on("click", function(e) {
                     e.preventDefault();
                     var myId = e.target.id
                     let bookobject = library[myId]
-
+                    clearPage()
                     addBook(bookobject.title, bookobject.author, bookobject.image, bookobject.isbn);
                     // library[myId]
                     // console.log(library[myId].title);
                     // console.log(e.target.id)
                 });
                 cardDiv3.append(button);
+
                 buttonID++;
                 //appends to the page 
                 $(".search-results").append(cardDiv)
@@ -94,8 +97,17 @@ $(document).ready(function() {
         });
         // Emptying input box by replacing the value with an empty string
         $("#title").val("");
+        clearCard();
 
+        function clearCard() {
+            // $(".search-results").remove()
+        }
     });
+
+
+    function clearPage() {
+        window.location.href = "/bookshelf";
+    }
 
     function getID() {
         $.get("/api/user_data").then(function(data) {
