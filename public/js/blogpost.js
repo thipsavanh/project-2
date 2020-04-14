@@ -81,7 +81,8 @@ $(document).ready(function() {
     // This function constructs a post's HTML
     function createNewRow(post) {
         console.log(post.id);
-        console.log(post.title);
+
+
         var formattedDate = new Date(post.createdAt);
         formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
         var newPostCard = $("<div>");
@@ -97,8 +98,8 @@ $(document).ready(function() {
         var newPostTitle = $("<h2>");
         var newPostDate = $("<small>");
         var newPostuser = $("<h5>");
-        console.log(post.user);
-        newPostuser.text("Written by: " + post.user);
+        console.log(post.User);
+        newPostuser.text("Written by: " + post.User.username);
         newPostuser.css({
             float: "right",
             color: "blue",
