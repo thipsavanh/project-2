@@ -10,47 +10,47 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/subscription.html"));
     });
 
-  app.get("/user", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/user.html"));
-  });
+    app.get("/user", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/user.html"));
+    });
 
-  app.get("/cms", function(req, res) {
-    console.log("hey");
-    // if(req.user) {
-    //   res.redirect("/signup");
-    // }
-   res.sendFile(path.join(__dirname, "../public/cms.html"));
-  });
+    app.get("/cms", function(req, res) {
+        console.log("hey");
+        // if (req.user) {
+        //     res.redirect("/login");
+        // }
+        res.sendFile(path.join(__dirname, "../public/cms.html"));
+    });
 
 
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  // app.get("/members", isAuthenticated, function(req, res) {
-  //   res.sendFile(path.join(__dirname, "../public/members.html"));
-  // });
+    // Here we've add our isAuthenticated middleware to this route.
+    // If a user who is not logged in tries to access this route they will be redirected to the signup page
+    // app.get("/members", isAuthenticated, function(req, res) {
+    //   res.sendFile(path.join(__dirname, "../public/members.html"));
+    // });
 
-  app.get("/signup", function(req, res) {
-    if(req.user) {
-      res.redirect("/signup");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
-  });
+    app.get("/signup", function(req, res) {
+        if (req.user) {
+            res.redirect("/signup");
+        }
+        res.sendFile(path.join(__dirname, "../public/signup.html"));
+    });
 
-  app.get("/subscription", function(req, res) {
-    if(req.user) {
-      res.redirect("/subscription");
-    }
-    res.sendFile(path.join(__dirname, "../public/subscription.html"));
-  });
+    app.get("/subscription", function(req, res) {
+        if (req.user) {
+            res.redirect("/subscription");
+        }
+        res.sendFile(path.join(__dirname, "../public/subscription.html"));
+    });
 
 
 
 
     app.get("/blog", function(req, res) {
-      console.log("hi");
-      // if(req.user) {
-      //   res.redirect("/signup");
-      // }
+        console.log("hi");
+        // if(req.user) {
+        //   res.redirect("/signup");
+        // }
         res.sendFile(path.join(__dirname, "../public/blogpost.html"));
     });
 
@@ -78,7 +78,10 @@ module.exports = function(app) {
 
         res.sendFile(path.join(__dirname, "../public/wishlist.html"));
     });
-
+    app.get("/library", function(req, res) {
+        // If the user already has an account send them to the members page
+        res.sendFile(path.join(__dirname, "../public/library.html"));
+    });
     app.get("/login", function(req, res) {
         // If the user already has an account send them to the members page
         if (req.user) {
@@ -87,7 +90,7 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/login.html"));
     });
     app.get("/blogpost", function(req, res) {
-      console.log("hello");
+        console.log("hello");
         // If the user already has an account send them to the members page
         if (req.user) {
             res.redirect("/members");

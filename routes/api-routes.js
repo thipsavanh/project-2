@@ -71,120 +71,102 @@ module.exports = function(app) {
             });
     });
 
-    app.get("/api/users", function(req, res) {
-      // Here we add an "include" property to our options in our findAll query
-      // We set the value to an array of the models we want to include in a left outer join
-      // In this case, just db.Post
-      db.User.findAll({
-        include: [db.Post]
-      }).then(function(dbUser) {
-        res.json(dbUser);
-      });
+    app.get("/signup", function(req, res) {
+        // req.logout();
+        res.redirect("/");
     });
-  
+
+    //BLOG POST API's
+    app.get("/api/users", function(req, res) {
+        // Here we add an "include" property to our options in our findAll query
+        // We set the value to an array of the models we want to include in a left outer join
+        // In this case, just db.Post
+        db.User.findAll({
+            include: [db.Post]
+        }).then(function(dbUser) {
+            res.json(dbUser);
+        });
+    });
+
     app.post("/api/users", function(req, res) {
         db.User.create(req.body).then(function(dbUsers) {
-          res.json(dbUsers);
+            res.json(dbUsers);
         });
-      });
+    });
 
     app.get("/api/posts", function(req, res) {
         var query = {};
         if (req.query.User_id) {
-          query.UserId = req.query.User_id;
+            query.UserId = req.query.User_id;
         }
         db.Post.findAll({
-          where: query,
-          include: [db.User]
+            where: query,
+            include: [db.User]
         }).then(function(dbPost) {
-          res.json(dbPost);
+            res.json(dbPost);
         });
-      });
-  
+    });
+
     app.post("/api/posts", function(req, res) {
-      console.log(req.body);
+        console.log(req.body);
         db.Post.create(req.body).then(function(dbPost) {
-          res.json(dbPost);
+            res.json(dbPost);
         });
-      });
-  
-  app.get("/api/users/:id", function(req, res) {
+    });
+
+    app.get("/api/users/:id", function(req, res) {
         db.Users.findOne({
-          where: {
-            id: req.params.id
-          },
-          include: [db.Post]
+            where: {
+                id: req.params.id
+            },
+            include: [db.Post]
         }).then(function(dbUsers) {
             res.json(dbUsers);
         });
-      }); 
-
-  app.delete("/api/posts/:id", function(req, res) {
-    db.Post.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbPost) {
-      res.json(dbPost);
     });
-  });
 
-
-  app.post('/blogpostcomment', function(req, res){
-    console.log(req.body);
-    var newComment = {
-      name: req.body.name,
-      comment: req.body.comment
-    }
-    pusher.trigger('flash-comments', 'new_comment', newComment);
-    res.json({  created: true });
-    // db.Comment.create(req.body).then(function(dbComment) {
-    //   res.json(dbComment);
-    // });
-  });
-
-  app.put("/api/posts", function(req, res) {
-    db.Post.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbPost) {
-      res.json(dbPost);
+    app.delete("/api/posts/:id", function(req, res) {
+        db.Post.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbPost) {
+            res.json(dbPost);
+        });
     });
-  });
 
-  app.post("/api/comments", function(req, res) {
-    comment= {
-      body: req.body.comment
-  }
-  console.log(comment)
-  db.Comment.create(comment)
-      .then(function() {
-          res.status(200).send;
-      })
-      .catch(function(err) {
-          console.log(err)
-          res.status(401).json(err);
-      });
-});
 
-    app.post("/bookshelf", function(req, res) {
-        // console.log(req.body)
-        // console.log(res)
-
-        console.log(req.user.id)
-
-        book = {
-            title: req.body.title,
-            author: req.body.author,
-            image: req.body.image,
-            ISBN: req.body.isbn,
-            UserId: req.user.id
+    app.post('/blogpostcomment', function(req, res) {
+        console.log(req.body);
+        var newComment = {
+            user: req.body.user,
+            comment: req.body.comment
         }
-        console.log(book)
-        db.Library.create(book)
+        pusher.trigger('flash-comments', 'new_comment', newComment);
+        res.json({ created: true });
+        // db.Comment.create(req.body).then(function(dbComment) {
+        //   res.json(dbComment);
+        // });
+    });
+
+    app.put("/api/posts", function(req, res) {
+        db.Post.update(
+            req.body, {
+                where: {
+                    id: req.body.id
+                }
+            }).then(function(dbPost) {
+            res.json(dbPost);
+        });
+    });
+
+    app.post("/api/comments", function(req, res) {
+        comment = {
+            user: req.body.user,
+            body: req.body.comment
+        }
+        console.log("line 162" + comment)
+        db.Comment.create(comment)
             .then(function() {
                 res.status(200).send;
             })
@@ -194,7 +176,30 @@ module.exports = function(app) {
             });
     });
 
-    // Route for bookshelf
+
+    //BOOKSHELF API's
+    app.post("/bookshelf", function(req, res) {
+        // console.log(req.body)
+        // console.log(res)
+        book = {
+            title: req.body.title,
+            author: req.body.author,
+            image: req.body.image,
+            ISBN: req.body.isbn
+        }
+        console.log(book)
+        db.Library.create(book)
+            .then(function() {
+                res.status(200).send;
+                // res.redirect("/bookshelf")
+            })
+            .catch(function(err) {
+                console.log(err)
+                res.status(401).json(err);
+            });
+    });
+
+
     app.get("/bookshelf", function(req, res) {
         // req.logout();
         res.redirect("/");
@@ -209,17 +214,35 @@ module.exports = function(app) {
             //  https://www.googleapis.com/books/v1/volumes?q=${isbn}&key=${yourAPIKey} 
 
         axios.get(queryURL).then(function(response) {
-            console.log(response.data.items[0].volumeInfo.title)
+                console.log(response.data.items[0].volumeInfo.title)
 
-            res.json(response.data)
-                // console.log(response.items[0].volumeInfo.title)
-                // console.log(response.items[0].volumeInfo.authors)
-                // console.log(response.items[0].volumeInfo.description)
-                // console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail)
-        })
+                res.json(response.data)
+                    // console.log(response.items[0].volumeInfo.title)
+                    // console.log(response.items[0].volumeInfo.authors)
+                    // console.log(response.items[0].volumeInfo.description)
+                    // console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail)
+            })
+            // .then(function() {
+            //     res.redirect(307, "/bookshelf");
+            // })
+            // .catch(function(err) {
+            //     res.status(401).json(err);
+            // });
     });
 
+    app.get("/api/library", function(req, res) {
+        db.Library.findAll({
 
+        }).then(function(dbLibrary) {
+            res.json(dbLibrary);
+        }).catch(function(err) {
+            res.status(401).json(err);
+        });
+    });
+    app.get("/library", function(req, res) {
+        // req.logout();
+        res.redirect("/");
+    });
     app.get("/wishlist", function(req, res) {
         // req.logout();
         res.redirect("/");
@@ -268,6 +291,7 @@ module.exports = function(app) {
             // Otherwise send back the user's email and id
             // Sending back a password, even a hashed password, isn't a good idea
             res.json({
+                full_name: req.user.full_name,
                 email: req.user.email,
                 id: req.user.id
             });
@@ -340,4 +364,3 @@ module.exports = function(app) {
 
     })
 };
-

@@ -47,6 +47,10 @@ section {
     background-position: 50% 50%;
 }
 
+.card {
+    margin-right: 1em;
+}
+
 
 /* Paragrapgh for Parallax Section */
 
@@ -107,3 +111,5 @@ section {
 .wn-footer a {
     color: yellow;
 }
+
+.card-img-top {}

@@ -5,132 +5,193 @@
     <title>Bookmart - Wishlist</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-    <link href="stylesheets/style.css" rel="stylesheet">
+
+    <link href="stylesheets/parallex.css" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
-             <span class="sr-only"> Toggle navigation </span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-           </button>
-        <a class="navbar-brand" href="/"><img src="/images/bookmart.png" alt="Bookmart LOGO"></a>
+        <img class="navbrand mx-auto" src="images/book.png" alt="Bookmart LOGO">
+    </nav>
 
+    <nav class="navbar navbar-expand-lg navbar-light mx-auto">
+        <div class="navbar-nav mx-auto">
+            <a class="nav-item active nav-link" href="/blog">The Clew<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/members">My Dashboard</a>
+            <a class="nav-item nav-link" href="/library">Library</a>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+        </div>
+    </nav>
 
-        <section class="bg-primary" id="features">
-            <div class="container">
-                <div class="section-heading">
-                    <section class="cta">
-                        <div class="cta-content">
-                            <div class="container">
-                                <h2>Add Book to <span class="member-name"></span>'s Bookshelf</h2>
-                            </div>
-                        </div>
+    <div class="features paralsec" id="features">
+        <div class="section-heading text-center">
+            <section class="cta">
+                <div class="cta-content">
+
                 </div>
+                <div class="row"></div>
+        </div>
 
+    </div>
+    </section>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+
+                <div class="cta-content">
+
+                    <hr>
+                </div>
+            </div>
+            <div class="overlay"></div>
+    </section>
+
+    </div>
+
+    <div class="jumbotron paral paralsec2">
+        <h1 class="display-3">
+            Hey Bookworm!</span>
+        </h1>
+        <p class="lead"><span class="member-name"></span>, please add a book that you would like to read to your wishlist!</p>
+        <!-- <p class="lead">
+            <a class="btn btn-warning btn-lg btn-md" href="#" role="button">Here is a button 1</a>
+        </p> -->
+    </div>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <section class="cta">
+                    <div class="cta-content">
+
+                    </div>
+                    <div class="overlay"></div>
+                </section>
+                <hr>
+            </div>
+    </section>
+    <hr>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="card-title text-center">Find your recently read book</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="POST" role="form">
+                            <div class="form-group">
+                                <input type="" class="form-control" id="title" placeholder="Book Title">
+                            </div>
+                        </form>
+                        <br>
+                        <hr>
+                        <div class="text-right">
+                            <button id="find-book" type="submit" value="Book Search" class="btn btn-warning btn-md">
+                              <span class="fa fa-book"></span> Search for a book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="card-title text-center">Search Results</h4>
+
+            </div>
+            <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span> <span class="msg"></span>
             </div>
             <hr>
+            <div class="card-group search-results"></div>
 
-            </section>
-
-            <div class="container">
-                <div class="row">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <h5 class="card-title">Find a book</h5>
-                                <div class="card-body">
-                                    <form action="" method="POST" role="form">
-                                        <div class="form-group">
-                                            <input type="" class="form-control" id="title" placeholder="Book Title">
-                                        </div>
-                                    </form>
-                                    <br>
-                                    <div class="text-right">
-                                        <button id="find-book" type="submit" value="Book Search" class="btn btn-primary btn-md">
-                              <span class="fa fa-book"></span> Search a book</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+        </div>
+        <div class="row">
+            <div class="card-group search-results2"></div>
 
 
-                <br/>
+        </div>
+        <br>
+
+        <br>
+    </div>
+    <br>
+    <div class="cover container">
+        <!-- <div class="container"> -->
+        <h4 class="card-title text-center">My Wishlist</h4>
+        <div class="row">
+            <div class="card-group books">
             </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <h5 class="card-title">Search Results</h5>
-                                <hr>
-                                <div class="search-results">
-
-
-
-                                </div>
-                                <br>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
+        </div>
+    </div>
+    </div>
+    <div class="cover container">
+        <!-- <div class="container"> -->
+        <div class="row">
+            <div class="card-group books2">
             </div>
+        </div>
+    </div>
+    </div>
 
-            <br/>
-            </div>
-            <br>
+    <br>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading text-center">
+                <section class="cta">
+                    <div class="cta-content">
 
-            <section class="features" id="features">
-                <div class="container">
-                    <div class="section-heading text-center">
-                        <section class="cta">
-                            <div class="cta-content">
-
-                            </div>
-                            <div class="overlay"></div>
-                        </section>
-                        <hr>
                     </div>
+                    <div class="overlay"></div>
+                </section>
+                <hr>
+            </div>
+    </section>
+    <br>
 
-            </section>
+    <footer>
+        <!-- Footer -->
+        <div class="container text-center">
+            <hr>
+            <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#!">About</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="/members.html">The Library</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">Bookworm Dashboard</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#!">The Clew</a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 
-            <footer>
-                <!-- Footer -->
-                <div class="container">
-                    <p>&copy; <a href="/">Bookmart</a> 2020 Copyright: All Rights Reserved.</p>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a href="#!">About</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="/members.html">The Library</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">Bookworm Dashboard</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">The Clew</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">FAQ</a>
-                        </li>
-                    </ul>
-                </div>
-            </footer>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-            <script type="text/javascript" src="js/wishlist.js"></script>
+
+    <script type="text/javascript" src="js/bookshelf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
+    <script type="text/javascript" src="js/wishlist.js"></script>
 
 
 </body>
