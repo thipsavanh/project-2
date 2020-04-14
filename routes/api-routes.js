@@ -4,12 +4,13 @@ var passport = require("../config/passport");
 var axios = require("axios")
     // Will add dotenv in later 
 var stripe = require('stripe')('sk_test_Em0lVIiWzkkDqEro2ocRUt1400SCdpJAEz');
+var env = require("dotenv").config();
 
 var Pusher = require('pusher');
 
 var pusher = new Pusher({
     appId: '979597',
-    key: 'fa885a6ad4dfa25e855b',
+    key: process.env.API_PUSHER_KEY,
     secret: 'c1dea7cde1aa39a86b01',
     cluster: 'us2',
     encrypted: true

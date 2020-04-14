@@ -149,49 +149,18 @@ $(document).ready(function() {
     if (id) {
       partial = " for user #" + id;
     }
-    blogContainer.empty();
-    var messageH2 = $("<h2>");
-    messageH2.css({ "text-align": "center", "margin-top": "50px" });
-    messageH2.html("No posts yet" + partial + ", navigate <a href='/cms" + query +
-    "'>here</a> in order to get started.");
-    blogContainer.append(messageH2);
-  }
 
+    getComments();
 
-
-// Using IIFE for Implementing Module Pattern to keep the Local Space for the JS Variables
-function pusher() {
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var serverUrl = "/blogpost",
-        comments = [],
-        pusher = new Pusher('85a6ad4dfa25e855b', {
-          cluster: 'us2',
-          encrypted: true
-        }),
-        // Subscribing to the 'flash-comments' Channel
-
-        privateChannel = pusher.subscribe('flash-comments'),
-        commentForm = document.getElementById('comment-form'),
-        commentsList = document.getElementById('comments-list'),
-        commentTemplate = document.getElementById('comment-template');
-
-    // Binding to Pusher Event on our 'flash-comments' Channel
-    privateChannel.bind('new_comment',newCommentReceived);
-
-    // Adding to Comment Form Submit Event
-    commentForm.addEventListener("submit", addNewComment);
-
-    // New Comment Receive Event Handler
-    // We will take the Comment Template, replace placeholders & append to commentsList
-    function newCommentReceived(data){
-      var newCommentHtml = commentTemplate.innerHTML.replace('{{userName}}',data.userName);
-      newCommentHtml = newCommentHtml.replace('{{comment}}',data.comment);
-      var newCommentNode = document.createElement('div');
-      newCommentNode.classList.add('comment');
-      newCommentNode.innerHTML = newCommentHtml;
-      commentsList.appendChild(newCommentNode);
+    // This function does an API call to delete posts
+    function deletePost(id) {
+        $.ajax({
+                method: "DELETE",
+                url: "/api/posts/" + id
+            })
+            .then(function() {
+                getPosts(postCategorySelect.val());
+            });
     }
 
     var newCommentUser = $("#new_comment_userName");
