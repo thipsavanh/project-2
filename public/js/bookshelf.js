@@ -7,9 +7,6 @@ $(document).ready(function() {
     });
 
 
-
-
-
     let library = []
     $("#find-book").on("click", function(event) {
         event.preventDefault();

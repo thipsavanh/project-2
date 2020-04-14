@@ -133,7 +133,7 @@ module.exports = function(app) {
     app.post('/blogpostcomment', function(req, res) {
         console.log(req.body);
         var newComment = {
-            name: req.body.name,
+            user: req.body.user,
             comment: req.body.comment
         }
         pusher.trigger('flash-comments', 'new_comment', newComment);
@@ -156,9 +156,10 @@ module.exports = function(app) {
 
     app.post("/api/comments", function(req, res) {
         comment = {
+            user: req.body.user,
             body: req.body.comment
         }
-        console.log(comment)
+        console.log("line 162" + comment)
         db.Comment.create(comment)
             .then(function() {
                 res.status(200).send;
@@ -170,7 +171,7 @@ module.exports = function(app) {
     });
 
 
-    //BOOKSHELP API's
+    //BOOKSHELF API's
     app.post("/bookshelf", function(req, res) {
         // console.log(req.body)
         // console.log(res)
@@ -191,7 +192,7 @@ module.exports = function(app) {
             });
     });
 
-    // Route for bookshelf
+
     app.get("/bookshelf", function(req, res) {
         // req.logout();
         res.redirect("/");
@@ -216,6 +217,13 @@ module.exports = function(app) {
         })
     });
 
+    app.get("/api/library", function(req, res) {
+        db.Library.findAll({
+
+        }).then(function(dbLibrary) {
+            res.json(dbLibrary);
+        });
+    });
 
     app.get("/wishlist", function(req, res) {
         // req.logout();
