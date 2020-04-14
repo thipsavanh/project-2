@@ -15,8 +15,6 @@ $(document).ready(function() {
         var intitle = $("#title").val().trim();
         console.log(intitle)
 
-
-
         $.ajax({
             url: `/getbooks/${intitle}`,
             method: "GET"
@@ -78,7 +76,8 @@ $(document).ready(function() {
                     // library[myId]
                     // console.log(library[myId].title);
                     // console.log(e.target.id)
-                });
+                })
+
                 cardDiv3.append(button);
 
                 buttonID++;
@@ -94,7 +93,7 @@ $(document).ready(function() {
                 console.log(library)
 
             }
-        });
+        }).catch(handleLoginErr);
         // Emptying input box by replacing the value with an empty string
         $("#title").val("");
         clearCard();
@@ -127,5 +126,10 @@ $(document).ready(function() {
             isbn: isbn,
             isbn: isbn
         }).done
+    }
+
+    function handleLoginErr(err) {
+        $("#alert .msg").text(err.responseJSON);
+        $("#alert").fadeIn(500);
     }
 });

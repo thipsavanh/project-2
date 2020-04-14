@@ -208,14 +208,20 @@ module.exports = function(app) {
             //  https://www.googleapis.com/books/v1/volumes?q=${isbn}&key=${yourAPIKey} 
 
         axios.get(queryURL).then(function(response) {
-            console.log(response.data.items[0].volumeInfo.title)
+                console.log(response.data.items[0].volumeInfo.title)
 
-            res.json(response.data)
-                // console.log(response.items[0].volumeInfo.title)
-                // console.log(response.items[0].volumeInfo.authors)
-                // console.log(response.items[0].volumeInfo.description)
-                // console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail)
-        })
+                res.json(response.data)
+                    // console.log(response.items[0].volumeInfo.title)
+                    // console.log(response.items[0].volumeInfo.authors)
+                    // console.log(response.items[0].volumeInfo.description)
+                    // console.log(response.items[0].volumeInfo.imageLinks.smallThumbnail)
+            })
+            // .then(function() {
+            //     res.redirect(307, "/bookshelf");
+            // })
+            // .catch(function(err) {
+            //     res.status(401).json(err);
+            // });
     });
 
     app.get("/api/library", function(req, res) {
@@ -223,6 +229,8 @@ module.exports = function(app) {
 
         }).then(function(dbLibrary) {
             res.json(dbLibrary);
+        }).catch(function(err) {
+            res.status(401).json(err);
         });
     });
 
