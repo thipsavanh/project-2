@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: scroll;
     font-family: Raleway;
 }
 
@@ -20,10 +20,11 @@ header {
     margin-right: 15px;
 }
 
-section {
+
+/* section {
     padding: 15px;
     width: calc(100% - 45px);
-}
+} */
 
 .logo img {
     height: 35px;
