@@ -70,6 +70,11 @@ module.exports = function(app) {
             });
     });
 
+    app.get("/signup", function(req, res) {
+        // req.logout();
+        res.redirect("/");
+    });
+
     //BLOG POST API's
     app.get("/api/users", function(req, res) {
         // Here we add an "include" property to our options in our findAll query
