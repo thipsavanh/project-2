@@ -13,27 +13,15 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbarInfo">
-            <span class="sr-only"> Toggle navigation </span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button> -->
         <img class="navbrand mx-auto" src="images/book.png" alt="Bookmart LOGO">
     </nav>
 
     <nav class="navbar navbar-expand-lg navbar-light mx-auto">
         <div class="navbar-nav mx-auto">
-            <a class="nav-item active nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-
-
-            <a class="nav-item nav-link" href="/login">Login</a>
-
-
-            <a class="nav-item nav-link" href="/signup">Sign Up</a>
-
-
-            <a class="nav-item nav-link" href="/ebook">Free E-books</a>
+            <a class="nav-item active nav-link" href="/blog">The Clew<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/members">My Dashboard</a>
+            <a class="nav-item nav-link" href="/library">Library</a>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
         </div>
     </nav>
 
@@ -114,16 +102,18 @@
                 <h4 class="card-title text-center">Search Results</h4>
 
             </div>
+            <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span> <span class="msg"></span>
+            </div>
+            <hr>
+            <div class="card-group search-results"></div>
+
 
         </div>
-        <hr>
-        <div class="card-group search-results"></div>
+        <br>
 
-
-    </div>
-    <br>
-
-    <br>
+        <br>
     </div>
     <br>
     <section class="features" id="features">
