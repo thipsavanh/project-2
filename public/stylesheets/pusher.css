@@ -80,22 +80,26 @@ section {
     flex: 0 auto;
     display: flex;
     align-content: center;
+    /* margin-left: 1em; */
 }
 
 .comment-form .left-side .row input {
     height: 32px;
     width: 50%;
+    margin-left: 2em;
 }
 
 .comment-form .left-side .row textarea {
     height: 42px;
     margin-top: 8px;
+    margin-left: 2em;
 }
 
 .comment-form .right-side {
     flex: 1;
     display: flex;
     justify-content: center;
+    margin-left: 2em;
 }
 
 .comment-form .right-side button {
@@ -134,11 +138,13 @@ section {
 
 .flash-comments .comment-info .userName {
     color: #000;
+    margin-left: 2em;
 }
 
 .flash-comments .comment-info .text {
     padding-top: 6px;
     font-size: 13px;
+    margin-left: 2em;
 }
 
 
