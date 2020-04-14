@@ -80,7 +80,6 @@ module.exports = function(app) {
     });
     app.get("/library", function(req, res) {
         // If the user already has an account send them to the members page
-
         res.sendFile(path.join(__dirname, "../public/library.html"));
     });
     app.get("/login", function(req, res) {
