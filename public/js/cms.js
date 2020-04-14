@@ -98,7 +98,7 @@ $(document).ready(function() {
     // to create an user first
     function renderuserList(data) {
         if (!data.length) {
-            window.location.href = "/users";
+            window.location.href = "/login";
         }
         $(".hidden").removeClass("hidden");
         var rowsToAdd = [];

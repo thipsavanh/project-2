@@ -16,9 +16,9 @@ module.exports = function(app) {
 
     app.get("/cms", function(req, res) {
         console.log("hey");
-        // if(req.user) {
-        //   res.redirect("/signup");
-        // }
+        if (req.user) {
+            res.redirect("/login");
+        }
         res.sendFile(path.join(__dirname, "../public/cms.html"));
     });
 
