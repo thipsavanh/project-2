@@ -233,7 +233,10 @@ module.exports = function(app) {
             res.status(401).json(err);
         });
     });
-
+    app.get("/library", function(req, res) {
+        // req.logout();
+        res.redirect("/");
+    });
     app.get("/wishlist", function(req, res) {
         // req.logout();
         res.redirect("/");
