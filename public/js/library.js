@@ -56,7 +56,7 @@
                  //create a link to add to bookshelf
                  cardDiv2.append(titleDiv, authorDiv, cardDiv3);
                  var cardDiv3 = $("<div>").addClass("card-body");
-                 var button = $("<button>").addClass("card-link").text("Add to Bookshelf").attr("id", buttonID);
+                 var button = $("<button>").addClass("card-link btn btn-warning btn-md").text("Add to Bookshelf").attr("id", buttonID);
 
                  button.on("click", function(e) {
                      e.preventDefault();

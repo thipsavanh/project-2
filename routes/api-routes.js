@@ -185,6 +185,7 @@ module.exports = function(app) {
         db.Library.create(book)
             .then(function() {
                 res.status(200).send;
+                // res.redirect("/bookshelf")
             })
             .catch(function(err) {
                 console.log(err)
